@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#2d6a4f" />
+<meta name="author" content="Vaibhav Jaiswal" />
+<meta name="robots" content="index, follow" />
+<meta name="keywords" content="fullscreen map, geothermal potential, Germany, CMIP6, climate projection, interactive explorer, BHE, 8-model ensemble, Vaibhav Jaiswal, KIT" />
+
+<title>Fullscreen Map Explorer - Master Thesis - Vaibhav Jaiswal</title>
+<meta name="description" content="Fullscreen interactive map explorer for the climate-projected geothermal potential of Germany. Switch between 8 CMIP6 models, scenarios, and 6 data layers. M.Sc. thesis at KIT." />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Vaibhav Jaiswal Portfolio" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content="Fullscreen Map Explorer - Climate × Geothermal Germany" />
+<meta property="og:description" content="Fullscreen interactive map explorer for the climate-projected geothermal potential of Germany. 8 CMIP6 models, 2 scenarios, 6 data layers." />
+<meta property="og:url" content="/thesis/map-fullscreen.html" />
+<meta property="og:image" content="/thesis//og-map.png" />
+<meta property="og:image:secure_url" content="/thesis//og-map.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Fullscreen interactive map of climate-projected geothermal potential across Germany" />
+
+<!-- Twitter / generic social card fallback -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Fullscreen Map Explorer - Climate × Geothermal Germany" />
+<meta name="twitter:description" content="Interactive map explorer for climate-projected geothermal potential of Germany. 8 CMIP6 models, 2 scenarios, 6 data layers." />
+<meta name="twitter:image" content="/thesis//og-map.png" />
+<meta name="twitter:image:alt" content="Fullscreen interactive map of climate-projected geothermal potential across Germany" />
+
+<link rel="canonical" href="https://vaibhavjgeo.vercel.app/thesis/map-fullscreen.html" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f7f5f0'/%3E%3Ctext x='50' y='72' text-anchor='middle' fill='%232d6a4f' font-family='Georgia, serif' font-weight='700' font-style='italic' font-size='70'%3EV%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="/thesis//apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<style>
+:root {
+  --bg: #f7f5f0; --bg-alt: #fdfcf8; --ink: #15201a; --ink-soft: #2d3d33; --ink-faint: #6b7a72;
+  --muted: #6b7a72; --muted-soft: #9aa39c; --accent: #2d6a4f; --accent-deep: #1f4a37;
+  --accent-soft: #e3ebe5; --accent-on: #ffffff; --paper: #ffffff; --card: #ffffff;
+  --line: #dde0d8; --line-strong: #15201a;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-sans: 'IBM Plex Sans', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --max: 1400px; --gutter: 28px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+body { font-family: var(--font-sans); background: var(--bg); color: var(--ink); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; }
+a { color: inherit; text-decoration: none; transition: color 0.2s; }
+
+/* ============ NAV (matches homepage) ============ */
+header.topbar-fs { background: rgba(247, 245, 240, 0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); flex-shrink: 0; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px var(--gutter); gap: 24px; }
+.logo { font-family: var(--font-serif); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; color: var(--ink); }
+.logo-accent { color: var(--accent); }
+nav ul { display: flex; gap: 28px; list-style: none; font-family: var(--font-mono); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+nav a:hover, nav .active { color: var(--accent); }
+.nav-github { font-family: var(--font-mono); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border: 1px solid var(--line-strong); border-radius: 4px; transition: all 0.2s; }
+.nav-github:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.nav-github svg { width: 14px; height: 14px; }
+
+/* Hamburger button */
+.nav-toggle { display: none; background: none; border: 1px solid var(--line-strong); border-radius: 4px; padding: 8px 9px; cursor: pointer; flex-direction: column; gap: 4px; width: 36px; height: 36px; align-items: center; justify-content: center; }
+.nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); border-radius: 1px; transition: transform 0.2s, opacity 0.2s; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ============ FULLSCREEN LAYOUT ============ */
+.fs-layout { display: grid; grid-template-columns: 340px 1fr; flex: 1; overflow: hidden; }
+.fs-sidebar { background: var(--bg-alt); border-right: 1px solid var(--line); overflow-y: auto; padding: 20px 22px; }
+.fs-map-area { position: relative; overflow: hidden; }
+
+.mode-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 4px; margin-bottom: 20px; }
+.mode-tab { padding: 10px 12px; text-align: center; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); cursor: pointer; border-radius: 4px; transition: all 0.2s; font-weight: 600; }
+.mode-tab small { display: block; font-size: 9px; font-weight: 400; margin-top: 2px; color: var(--muted-soft); letter-spacing: 0.05em; }
+.mode-tab.active { background: var(--accent); color: var(--accent-on); }
+.mode-tab.active small { color: rgba(255,255,255,0.75); }
+
+.control-group { margin-bottom: 16px; }
+.control-group label { display: block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+.control-group select { width: 100%; padding: 9px 12px; font-family: var(--font-sans); font-size: 13px; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 4px; cursor: pointer; }
+.control-group select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+
+.layer-toggles { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 14px; margin: 18px 0; }
+.layer-toggles h4 { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink); margin-bottom: 12px; font-weight: 600; }
+.layer-toggle { display: flex; align-items: center; gap: 9px; padding: 6px 0; cursor: pointer; font-size: 12.5px; color: var(--ink-soft); }
+.layer-toggle:hover { color: var(--ink); }
+.layer-toggle input { margin: 0; cursor: pointer; }
+.swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+.swatch-heat { background: linear-gradient(135deg, #440154, #fde725); }
+.swatch-power { background: linear-gradient(135deg, #fff5f0, #67000d); }
+
+.legend-mini { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; margin-bottom: 12px; }
+.legend-mini h5 { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 8px; font-weight: 600; }
+.legend-mini .bar { height: 12px; border-radius: 3px; background: linear-gradient(to right, #440154, #fde725); margin-bottom: 6px; }
+.legend-mini .vals { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+
+.source-card { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 12px 14px; border-radius: 0 4px 4px 0; margin-top: 16px; }
+.source-card p { font-size: 12px; line-height: 1.55; color: var(--ink-soft); }
+.source-card strong { color: var(--ink); font-weight: 600; }
+.source-card a { color: var(--accent-deep); text-decoration: underline; }
+
+/* ============ MAP AREA ============ */
+.map-title-overlay { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 6px; padding: 8px 16px; font-family: var(--font-mono); font-size: 12px; color: var(--ink); z-index: 500; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+#map { width: 100%; height: 100%; background: var(--bg-alt); }
+.loading-overlay { position: absolute; inset: 0; background: rgba(247, 245, 240, 0.85); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; gap: 14px; z-index: 600; font-family: var(--font-mono); font-size: 13px; color: var(--ink); }
+.loading-overlay.active { display: flex; }
+.loading-overlay.hidden { display: none; }
+.spinner { width: 26px; height: 26px; border: 3px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.empty-state { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 40px; z-index: 500; background: var(--bg); }
+.empty-state.hidden { display: none; }
+.empty-state .inner { max-width: 520px; text-align: center; }
+.empty-state h2 { font-family: var(--font-serif); font-size: 32px; font-weight: 600; margin-bottom: 14px; color: var(--ink); }
+.empty-state h2 em { font-style: italic; color: var(--accent); }
+.empty-state p { color: var(--ink-soft); }
+
+.leaflet-popup-content-wrapper { border-radius: 6px; }
+.leaflet-popup-content { font-family: var(--font-sans); font-size: 13px; line-height: 1.5; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .fs-layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .fs-sidebar { border-right: none; border-bottom: 1px solid var(--line); max-height: 45vh; }
+}
+
+@media (max-width: 768px) {
+  :root { --gutter: 18px; }
+  .nav-toggle { display: inline-flex; }
+  #primary-nav { position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.25s ease; z-index: 1000; }
+  #primary-nav.open { max-height: 320px; padding: 8px 0 16px; }
+  #primary-nav ul { display: flex; flex-direction: column; gap: 0; padding: 0 var(--gutter); }
+  #primary-nav li { border-bottom: 1px solid var(--line); }
+  #primary-nav li:last-child { border-bottom: none; }
+  #primary-nav a { display: block; padding: 14px 0; font-size: 13px; }
+  .nav-inner { position: relative; padding: 10px var(--gutter); }
+  .nav-github span { display: none; }
+  .nav-github { padding: 7px 10px; }
+  .logo { font-size: 16px; }
+  .fs-sidebar { padding: 14px 16px; max-height: 42vh; }
+  .mode-tabs { padding: 3px; margin-bottom: 14px; }
+  .mode-tab { padding: 8px 10px; font-size: 10px; }
+  .mode-tab small { font-size: 8.5px; }
+  .control-group { margin-bottom: 12px; }
+  .control-group label { font-size: 10px; }
+  .control-group select { padding: 8px 10px; font-size: 12.5px; }
+  .layer-toggles { padding: 12px; margin: 14px 0; }
+  .layer-toggle { font-size: 12px; }
+  .legend-mini { padding: 9px 11px; }
+  .source-card { padding: 9px 11px; }
+  .source-card p { font-size: 11px; }
+  .map-title-overlay { font-size: 10px; padding: 6px 10px; top: 10px; }
+}
+
+@media (max-width: 520px) {
+  .fs-sidebar { max-height: 40vh; padding: 12px 14px; }
+  .mode-tabs { margin-bottom: 10px; }
+  .mode-tab { padding: 7px 8px; font-size: 9.5px; }
+  .control-group { margin-bottom: 10px; }
+  .layer-toggle { padding: 4px 0; font-size: 11.5px; }
+  .swatch { width: 11px; height: 11px; }
+  .legend-mini h5 { font-size: 9px; }
+  .legend-mini .vals { font-size: 9px; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar-fs">
+  <div class="nav-inner">
+    <div class="logo">Vaibhav <span class="logo-accent">Jaiswal</span></div>
+    <nav id="primary-nav">
+      <ul>
+        <li><a href="https://vaibhavjgeo.vercel.app/">Home</a></li>
+        <li><a href="https://vaibhavjgeo.vercel.app/thesis/" class="active">Master Thesis</a></li>
+        <li><a href="https://vaibhavjgeo.vercel.app/thesis/map-fullscreen.html">Map Explorer</a></li>
+        <li><a href="https://vaibhavjgeo.vercel.app/bhe/">BHE Recommender</a></li>
+        <li><a href="https://vaibhavjgeo.vercel.app/geochat/">GeoChat</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="https://github.com/vaibhavjgeo" target="_blank" rel="noopener" class="nav-github">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      <span>GitHub</span>
+    </a>
+  </div>
+</header>
+
+<div class="fs-layout">
+  <aside class="fs-sidebar">
+
+    <div class="mode-tabs">
+      <div class="mode-tab active" data-mode="individual">
+        Individual<small>1 of 8</small>
+      </div>
+      <div class="mode-tab" data-mode="ensemble">
+        Ensemble<small>8-model</small>
+      </div>
+    </div>
+
+    <div id="individual-controls">
+      <div class="control-group">
+        <label for="model-select">Climate Model (GCM)</label>
+        <select id="model-select">
+          <option value="BBC">BBC</option>
+          <option value="CanESM" selected>CanESM</option>
+          <option value="GFDL">GFDL</option>
+          <option value="GISS">GISS</option>
+          <option value="HadGEM">HadGEM</option>
+          <option value="IPSL">IPSL</option>
+          <option value="MIROC">MIROC</option>
+          <option value="MPI">MPI</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="scenario-individual">Climate Scenario (SSP)</label>
+        <select id="scenario-individual">
+          <option value="ssp245" selected>SSP 2-4.5 (modest mitigation)</option>
+          <option value="ssp585">SSP 5-8.5 (high emissions)</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="ensemble-controls" style="display:none;">
+      <div class="control-group">
+        <label for="stat-select">Ensemble Statistic</label>
+        <select id="stat-select">
+          <option value="mean" selected>Mean (μ)</option>
+          <option value="p25">25th Percentile</option>
+          <option value="p50">Median (P50)</option>
+          <option value="p75">75th Percentile</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="scenario-ensemble">Climate Scenario (SSP)</label>
+        <select id="scenario-ensemble">
+          <option value="ssp245" selected>SSP 2-4.5 (modest mitigation)</option>
+          <option value="ssp585">SSP 5-8.5 (high emissions)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label for="cmap-heat">Heat Extraction Colormap</label>
+      <select id="cmap-heat">
+        <option value="viridis" selected>Viridis (default)</option>
+        <option value="plasma">Plasma</option>
+        <option value="inferno">Inferno</option>
+        <option value="magma">Magma</option>
+        <option value="cividis">Cividis</option>
+        <option value="turbo">Turbo</option>
+        <option value="ylgnbu">YlGnBu</option>
+        <option value="bugn">BuGn</option>
+        <option value="coolwarm">Coolwarm</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="cmap-power">Usable Power Colormap</label>
+      <select id="cmap-power">
+        <option value="reds" selected>Reds (default)</option>
+        <option value="oranges">Oranges</option>
+        <option value="ylorrd">YlOrRd</option>
+        <option value="purd">PuRd</option>
+        <option value="hot">Hot</option>
+        <option value="autumn">Autumn</option>
+        <option value="copper">Copper</option>
+      </select>
+    </div>
+
+    <div class="layer-toggles">
+      <h4>Toggleable Layers</h4>
+      <label class="layer-toggle">
+        <input type="checkbox" data-layer="ql_Urban_50yr" checked>
+        <span class="swatch swatch-heat"></span>
+        <span class="name">Max Heat Extraction Rate (50yr)</span>
+      </label>
+      <label class="layer-toggle">
+        <input type="checkbox" data-layer="EnerUrb_50yr">
+        <span class="swatch swatch-power"></span>
+        <span class="name">Usable Power (50yr)</span>
+      </label>
+      <label class="layer-toggle">
+        <input type="checkbox" data-layer="ql_UrbanRenew_50yr">
+        <span class="swatch swatch-heat"></span>
+        <span class="name">Sustainable Heat Extraction Rate (50yr)</span>
+      </label>
+      <label class="layer-toggle">
+        <input type="checkbox" data-layer="EnerUrbRenew_50yr">
+        <span class="swatch swatch-power"></span>
+        <span class="name">Usable Power non-renewable</span>
+      </label>
+      <label class="layer-toggle">
+        <input type="checkbox" data-layer="ql_UrbanRenew_max_100yr">
+        <span class="swatch swatch-heat"></span>
+        <span class="name">Max Sustainable Heat Extraction Rate (100yr)</span>
+      </label>
+      <label class="layer-toggle">
+        <input type="checkbox" data-layer="EnerUrbRenew_100yr">
+        <span class="swatch swatch-power"></span>
+        <span class="name">Usable Power renewable (100yr)</span>
+      </label>
+    </div>
+
+    <div class="legend-mini">
+      <h5>Heat Extraction Rate (W/m)</h5>
+      <div class="bar" id="legend-bar-heat"></div>
+      <div class="vals"><span>2</span><span>14</span><span>27</span><span>41</span><span>55</span></div>
+    </div>
+    <div class="legend-mini">
+      <h5>Usable Power (W)</h5>
+      <div class="bar" id="legend-bar-power"></div>
+      <div class="vals"><span>100</span><span>1575</span><span>3050</span><span>4525</span><span>6000</span></div>
+    </div>
+
+    <div class="source-card">
+      <p><strong>Tip:</strong> Click anywhere on the map to see exact values at that point.<br><br>
+      <strong>Source:</strong> <a href="https://github.com/vaibhavjgeo/master-thesis" target="_blank">GitHub repo</a> · <a href="files/Single_BHE_Analysis_GEE_CMIP6_Folium.ipynb" target="_blank">Notebook</a></p>
+    </div>
+  </aside>
+
+  <div class="fs-map-area">
+    <div class="map-title-overlay" id="map-title">Loading...</div>
+    <div id="map"></div>
+    <div class="loading-overlay" id="loader">
+      <div class="spinner"></div>
+      <span id="loader-text">Loading data...</span>
+    </div>
+    <div class="empty-state hidden" id="empty-state">
+      <div class="inner">
+        <h2>Data not yet <em>exported</em>.</h2>
+        <p>The data_json folder is missing or has wrong path.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/chroma-js@2.4.2/chroma.min.js"></script>
+
+<script>
+const DATA_BASE = 'data_json';
+
+const COLORMAPS = {
+  viridis: ['#440154','#482878','#3e4a89','#31688e','#26828e','#1f9e89','#35b779','#6dcd59','#b4dd2c','#fde725'],
+  plasma:  ['#0d0887','#41049d','#6a00a8','#8f0da4','#b12a90','#cb4679','#e16462','#f1834b','#fca636','#fcce25','#f0f921'],
+  inferno: ['#000004','#1b0c41','#4a0c6b','#781c6d','#a52c60','#cf4446','#ed6925','#fb9a06','#f7d13d','#fcffa4'],
+  magma:   ['#000004','#1c1044','#4f127b','#812581','#b5367a','#e55c30','#fb8761','#fec287','#fcfdbf'],
+  cividis: ['#00224e','#123570','#3b496c','#575d6d','#707173','#8a8678','#a59c74','#c3b369','#e1cc55','#fee838'],
+  turbo:   ['#30123b','#4145ab','#4675ed','#39a2fc','#1bcfd4','#24eca6','#61fc6c','#a4fc3b','#d1e834','#f3c63a','#fe9b2d','#f36315','#d93806','#a91201','#7a0403'],
+  ylgnbu:  ['#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58'],
+  bugn:    ['#f7fcfd','#e5f5f9','#ccece6','#99d8c9','#66c2a4','#41ae76','#238b45','#006d2c','#00441b'],
+  coolwarm:['#3b4cc0','#688aef','#99baff','#c9d8ef','#edd1c2','#f7a889','#e36a53','#b40426'],
+  reds:    ['#fff5f0','#fee0d2','#fcbba1','#fc9272','#fb6a4a','#ef3b2c','#cb181d','#a50f15','#67000d'],
+  oranges: ['#fff5eb','#fee6ce','#fdd0a2','#fdae6b','#fd8d3c','#f16913','#d94801','#a63603','#7f2704'],
+  ylorrd:  ['#ffffcc','#ffeda0','#fed976','#feb24c','#fd8d3c','#fc4e2a','#e31a1c','#bd0026','#800026'],
+  purd:    ['#f7f4f9','#e7e1ef','#d4b9da','#c994c7','#df65b0','#e7298a','#ce1256','#980043','#67001f'],
+  hot:     ['#0b0000','#430000','#7c0000','#b40000','#ee0000','#ff3a00','#ff7400','#ffae00','#ffe800','#ffff5d','#ffffd6'],
+  autumn:  ['#ff0000','#ff2a00','#ff5500','#ff8000','#ffaa00','#ffd500','#ffff00'],
+  copper:  ['#000000','#28150d','#502a1c','#783f2a','#a05538','#c86b46','#f08055','#ff9663']
+};
+
+const RANGES = {
+  heat:  { min: 2, max: 55 },
+  power: { min: 100, max: 6000 }
+};
+
+let currentMode = 'individual';
+let currentData = null;
+let activeLayers = new Set(['ql_Urban_50yr']);
+let leafletLayers = {};
+let currentColormaps = { heat: 'viridis', power: 'reds' };
+
+const map = L.map('map', {
+  center: [51.0, 10.4],
+  zoom: 6,
+  minZoom: 5, maxZoom: 12
+});
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  subdomains: 'abcd', maxZoom: 19
+}).addTo(map);
+
+let germanyLayer = null;
+async function loadGermanyBoundary() {
+  try {
+    const r = await fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson');
+    const data = await r.json();
+    const germany = data.features.find(f =>
+      f.properties.ADMIN === 'Germany' || f.properties.NAME === 'Germany' || f.properties.name === 'Germany'
+    );
+    if (germany) {
+      germanyLayer = L.geoJSON(germany, {
+        style: { color: '#1a1612', weight: 2.5, fill: false, opacity: 0.9 },
+        interactive: false
+      }).addTo(map);
+    }
+  } catch (e) { console.warn('Germany boundary not loaded:', e); }
+}
+
+function renderArrayToImageURL(arr2d, layerType) {
+  const rows = arr2d.length;
+  const cols = arr2d[0].length;
+  const cmapName = currentColormaps[layerType];
+  const colors = COLORMAPS[cmapName];
+  const range = RANGES[layerType];
+  const scale = chroma.scale(colors).domain([range.min, range.max]);
+  
+  const smallCanvas = document.createElement('canvas');
+  smallCanvas.width = cols;
+  smallCanvas.height = rows;
+  const sCtx = smallCanvas.getContext('2d');
+  const imgData = sCtx.createImageData(cols, rows);
+  
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const v = arr2d[y][x];
+      const idx = (y * cols + x) * 4;
+      if (v === null || v === undefined || Number.isNaN(v) || !Number.isFinite(v)) {
+        imgData.data[idx] = 0; imgData.data[idx + 1] = 0; imgData.data[idx + 2] = 0; imgData.data[idx + 3] = 0;
+      } else {
+        const c = scale(v).rgb();
+        imgData.data[idx] = c[0]; imgData.data[idx + 1] = c[1]; imgData.data[idx + 2] = c[2]; imgData.data[idx + 3] = 200;
+      }
+    }
+  }
+  sCtx.putImageData(imgData, 0, 0);
+  
+  const SCALE = 50;
+  const bigCanvas = document.createElement('canvas');
+  bigCanvas.width = cols * SCALE;
+  bigCanvas.height = rows * SCALE;
+  const bCtx = bigCanvas.getContext('2d');
+  bCtx.imageSmoothingEnabled = false;
+  bCtx.mozImageSmoothingEnabled = false;
+  bCtx.webkitImageSmoothingEnabled = false;
+  bCtx.msImageSmoothingEnabled = false;
+  bCtx.drawImage(smallCanvas, 0, 0, bigCanvas.width, bigCanvas.height);
+  
+  return bigCanvas.toDataURL();
+}
+
+function getLayerType(layerName) {
+  return layerName.startsWith('ql_') ? 'heat' : 'power';
+}
+
+function buildUrl() {
+  if (currentMode === 'individual') {
+    const model = document.getElementById('model-select').value;
+    const scenario = document.getElementById('scenario-individual').value;
+    return `${DATA_BASE}/individual/${model}_${scenario}.json`;
+  } else {
+    const stat = document.getElementById('stat-select').value;
+    const scenario = document.getElementById('scenario-ensemble').value;
+    return `${DATA_BASE}/ensemble/${scenario}_${stat}.json`;
+  }
+}
+
+function buildTitle() {
+  if (currentMode === 'individual') {
+    const m = document.getElementById('model-select').value;
+    const s = document.getElementById('scenario-individual').value;
+    return `Single BHE Analysis - ${m} Model (${s})`;
+  } else {
+    const s = document.getElementById('scenario-ensemble').value;
+    const stat = document.getElementById('stat-select').value;
+    const labels = { mean: 'Mean (μ)', p25: '25th Percentile', p50: 'Median (P50)', p75: '75th Percentile' };
+    return `BHE Ensemble - ${s.toUpperCase()} - ${labels[stat]}`;
+  }
+}
+
+async function loadData() {
+  const url = buildUrl();
+  showLoader('Loading dataset...');
+  try {
+    const r = await fetch(url);
+    if (!r.ok) { hideLoader(); showEmpty(); return; }
+    currentData = await r.json();
+    hideEmpty();
+    document.getElementById('map-title').textContent = buildTitle();
+    redrawAllLayers();
+    const e = currentData.extent;
+    map.fitBounds([[e.ymin, e.xmin], [e.ymax, e.xmax]]);
+    hideLoader();
+  } catch (e) {
+    console.error(e);
+    hideLoader();
+    showEmpty();
+  }
+}
+
+function redrawAllLayers() {
+  if (!currentData) return;
+  Object.values(leafletLayers).forEach(layer => map.removeLayer(layer));
+  leafletLayers = {};
+  const e = currentData.extent;
+  const bounds = [[e.ymin, e.xmin], [e.ymax, e.xmax]];
+  for (const layerName of activeLayers) {
+    const arr = currentData.layers[layerName];
+    if (!arr) continue;
+    const layerType = getLayerType(layerName);
+    const url = renderArrayToImageURL(arr, layerType);
+    const overlay = L.imageOverlay(url, bounds, { opacity: 0.95 });
+    overlay.addTo(map);
+    leafletLayers[layerName] = overlay;
+  }
+  if (germanyLayer) germanyLayer.bringToFront();
+}
+
+function updateLegendsAndSwatches() {
+  const heatColors = COLORMAPS[currentColormaps.heat];
+  const powerColors = COLORMAPS[currentColormaps.power];
+  document.getElementById('legend-bar-heat').style.background = `linear-gradient(to right, ${heatColors.join(', ')})`;
+  document.getElementById('legend-bar-power').style.background = `linear-gradient(to right, ${powerColors.join(', ')})`;
+  const heatMid = heatColors[Math.floor(heatColors.length / 2)];
+  const powerMid = powerColors[Math.floor(powerColors.length / 2)];
+  document.querySelectorAll('.swatch-heat').forEach(s => s.style.background = heatMid);
+  document.querySelectorAll('.swatch-power').forEach(s => s.style.background = powerMid);
+}
+
+map.on('click', function(e) {
+  if (!currentData || activeLayers.size === 0) return;
+  const { lat, lng } = e.latlng;
+  const ext = currentData.extent;
+  const cols = currentData.shape.cols;
+  const rows = currentData.shape.rows;
+  const pixelWidth = (ext.xmax - ext.xmin) / cols;
+  const pixelHeight = (ext.ymax - ext.ymin) / rows;
+  const x = Math.floor((lng - ext.xmin) / pixelWidth);
+  const y = Math.floor((ext.ymax - lat) / pixelHeight);
+  if (x < 0 || y < 0 || x >= cols || y >= rows) return;
+  let html = `<div style="min-width:200px"><strong>${lat.toFixed(3)}°N, ${lng.toFixed(3)}°E</strong><br><br>`;
+  let any = false;
+  for (const layerName of activeLayers) {
+    const arr = currentData.layers[layerName];
+    if (!arr || !arr[y]) continue;
+    const v = arr[y][x];
+    if (v === null || isNaN(v)) continue;
+    const unit = layerName.startsWith('ql_') ? 'W/m' : 'W';
+    const labels = {
+      ql_Urban_50yr: 'Max Heat Ext (50yr)',
+      EnerUrb_50yr: 'Power (50yr)',
+      ql_UrbanRenew_50yr: 'Sust. Heat (50yr)',
+      EnerUrbRenew_50yr: 'Power non-renew',
+      ql_UrbanRenew_max_100yr: 'Max Sust. Heat (100yr)',
+      EnerUrbRenew_100yr: 'Power renew (100yr)'
+    };
+    html += `<div>${labels[layerName] || layerName}: <span class="popup-value">${v.toFixed(2)} ${unit}</span></div>`;
+    any = true;
+  }
+  if (!any) html += '<em>No data at this point</em>';
+  html += '</div>';
+  L.popup().setLatLng(e.latlng).setContent(html).openOn(map);
+});
+
+function showLoader(text) {
+  document.getElementById('loader-text').textContent = text || 'Loading...';
+  document.getElementById('loader').classList.add('active');
+}
+function hideLoader() { document.getElementById('loader').classList.remove('active'); }
+function showEmpty() { document.getElementById('empty-state').classList.remove('hidden'); }
+function hideEmpty() { document.getElementById('empty-state').classList.add('hidden'); }
+
+document.querySelectorAll('.mode-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentMode = tab.dataset.mode;
+    document.getElementById('individual-controls').style.display = currentMode === 'individual' ? '' : 'none';
+    document.getElementById('ensemble-controls').style.display = currentMode === 'ensemble' ? '' : 'none';
+    loadData();
+  });
+});
+
+['model-select', 'scenario-individual', 'stat-select', 'scenario-ensemble'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('change', loadData);
+});
+
+document.getElementById('cmap-heat').addEventListener('change', e => {
+  currentColormaps.heat = e.target.value;
+  updateLegendsAndSwatches();
+  redrawAllLayers();
+});
+document.getElementById('cmap-power').addEventListener('change', e => {
+  currentColormaps.power = e.target.value;
+  updateLegendsAndSwatches();
+  redrawAllLayers();
+});
+
+document.querySelectorAll('.layer-toggle input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', e => {
+    const layerName = e.target.dataset.layer;
+    if (e.target.checked) activeLayers.add(layerName);
+    else activeLayers.delete(layerName);
+    redrawAllLayers();
+  });
+});
+
+updateLegendsAndSwatches();
+loadGermanyBoundary();
+loadData();
+</script>
+
+
+<!-- Vercel Web Analytics -->
+
+
+<!-- Hamburger menu toggle -->
+<script>
+(function() {
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('primary-nav');
+  if (!toggle || !nav) return;
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+    });
+  });
+})();
+</script>
+
+<!-- Vercel Web Analytics -->
+<script>
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>

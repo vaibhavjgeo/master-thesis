@@ -1,0 +1,40 @@
+{
+  "value_ranges": {
+    "ql_min": 2,
+    "ql_max": 55,
+    "pwr_min": 100,
+    "pwr_max": 6000
+  },
+  "layer_info": {
+    "ql_Urban_50yr": {
+      "unit": "W/m",
+      "type": "heat",
+      "label": "Max Heat Extraction Rate (50yr, no sustainable)"
+    },
+    "EnerUrb_50yr": {
+      "unit": "W",
+      "type": "power",
+      "label": "Usable Power (50yr)"
+    },
+    "ql_UrbanRenew_50yr": {
+      "unit": "W/m",
+      "type": "heat",
+      "label": "Sustainable Heat Extraction Rate (50yr)"
+    },
+    "EnerUrbRenew_50yr": {
+      "unit": "W",
+      "type": "power",
+      "label": "Usable Power non-renewable rates"
+    },
+    "ql_UrbanRenew_max_100yr": {
+      "unit": "W/m",
+      "type": "heat",
+      "label": "Max Sustainable Heat Extraction Rate (100yr)"
+    },
+    "EnerUrbRenew_100yr": {
+      "unit": "W",
+      "type": "power",
+      "label": "Usable Power renewable rates (100yr)"
+    }
+  }
+}
