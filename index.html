@@ -620,33 +620,57 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
   <div class="section-header">
     <div class="eyebrow">§ 03 - Workflow</div>
     <h2>From climate model to <em>borehole physics</em>.</h2>
-    <p>Four-stage pipeline integrating CMIP6 ensembles, FLS-based heat-transport modeling, and interactive geospatial visualization.</p>
+    <p>An eight-stage pipeline from CMIP6 ensembles through FLS heat-transport physics to interactive geospatial visualization.</p>
   </div>
 
   <div class="methods-flow">
     <div class="method-step">
       <div class="step-num">-> 01 / DATA</div>
       <h4>CMIP6 acquisition</h4>
-      <p>8 CMIP6 GCMs (BCC-CSM2-MR, CanESM5, GFDL-ESM4, GISS-E2-1-G, HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2-HR) from NASA NEX-GDDP-CMIP6 in Google Earth Engine under SSP 2-4.5 &amp; SSP 5-8.5. Native resolution 0.25° (~25 km), resampled to a 5 km EPSG:4326 analysis grid; surface driver is near-surface air temperature (tas) with an air-to-ground coupling. Data: NASA NEX-GDDP-CMIP6 (Thrasher et al., 2022, <em>Scientific Data</em>); we acknowledge the CMIP6 modelling groups.</p>
-      <small class="tools">Python · Google Earth Engine · rasterio</small>
+      <p>8 CMIP6 GCMs (BCC-CSM2-MR, CanESM5, GFDL-ESM4, GISS-E2-1-G, HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2-HR) under SSP 2-4.5 &amp; SSP 5-8.5, from NASA NEX-GDDP-CMIP6 in Google Earth Engine.</p>
+      <small class="tools">Python · Google Earth Engine</small>
     </div>
     <div class="method-step">
-      <div class="step-num">-> 02 / MODEL</div>
+      <div class="step-num">-> 02 / GRID</div>
+      <h4>Resampling &amp; grid</h4>
+      <p>Native resolution is 0.25° (~25 km); rasters are resampled to a 5 km EPSG:4326 analysis grid - a computation grid, not added information. Data: Thrasher et al. (2022, <em>Scientific Data</em>); CMIP6 modelling groups acknowledged.</p>
+      <small class="tools">rasterio · EPSG:4326</small>
+    </div>
+    <div class="method-step">
+      <div class="step-num">-> 03 / COUPLING</div>
+      <h4>Surface driver</h4>
+      <p>The climate variable is near-surface air temperature (tas), coupled to ground-surface temperature with a land-cover-dependent offset - the boundary condition that drives the modelled subsurface response.</p>
+      <small class="tools">tas · air-to-ground offset</small>
+    </div>
+    <div class="method-step">
+      <div class="step-num">-> 04 / MODEL</div>
       <h4>FLS heat transport</h4>
-      <p>Finite-line-source model with a Cauchy-type upper boundary (Rivera, Blum &amp; Bayer, 2016, <em>Energy</em> 98) and groundwater-advection MFLS lineage (Molina-Giraldo et al., 2011). The ~4 m of borehole length saved per +1 °C is the urban central-Europe rule of Rivera et al. (2017, <em>Renewable Energy</em> 103).</p>
-      <small class="tools">NumPy · SciPy · FLS theory</small>
+      <p>Finite-line-source model with a Cauchy-type upper boundary (Rivera, Blum &amp; Bayer, 2016, <em>Energy</em> 98), MFLS lineage (Molina-Giraldo et al., 2011); H = 150 m, λ = 2.5 W/(m·K), R<sub>b</sub> = 0.15 (m·K)/W.</p>
+      <small class="tools">NumPy · FLS theory</small>
     </div>
     <div class="method-step">
-      <div class="step-num">-> 03 / SOLVE</div>
+      <div class="step-num">-> 05 / CONSTRAINT</div>
+      <h4>Design limit</h4>
+      <p>Sustainability is defined by the minimum mean fluid temperature, T<sub>min</sub> ≥ -1.5 °C (SIA 384/6; VDI 4640 is the corresponding German guideline) - the constraint every candidate extraction rate must satisfy.</p>
+      <small class="tools">SIA 384/6 · VDI 4640</small>
+    </div>
+    <div class="method-step">
+      <div class="step-num">-> 06 / SOLVE</div>
       <h4>Brent's iteration</h4>
-      <p>Root-finding for sustainable extraction rate at minimum fluid temperature.</p>
+      <p>Per pixel, the maximum sustainable extraction rate is found by root-finding with Brent's method over 50-year, 100-year, and 100-year-renewable operating horizons.</p>
       <small class="tools">scipy.optimize · Brent's method</small>
     </div>
     <div class="method-step">
-      <div class="step-num">-> 04 / VISUAL</div>
+      <div class="step-num">-> 07 / ENSEMBLE</div>
+      <h4>Uncertainty spread</h4>
+      <p>Results aggregate across the 8-GCM ensemble as mean, P25, P50, and P75 - capturing climate-model spread per pixel and scenario (not parameter or structural uncertainty).</p>
+      <small class="tools">percentiles · 8 GCMs</small>
+    </div>
+    <div class="method-step">
+      <div class="step-num">-> 08 / VISUAL</div>
       <h4>Live JS rendering</h4>
-      <p>Per-pixel data exported as JSON, rendered with Leaflet + chroma-js for live colormap switching.</p>
-      <small class="tools">JSON · Leaflet.js · chroma-js · Canvas</small>
+      <p>Per-pixel results export as 24 compact JSON layers, rendered with Leaflet + chroma-js for instant colormap and scenario switching - including the ~4 m of borehole saved per +1 °C (Rivera et al., 2017).</p>
+      <small class="tools">JSON · Leaflet.js · chroma-js</small>
     </div>
   </div>
 </section>
@@ -857,26 +881,26 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
     <div class="bts-card">
       <div class="bts-label">→ Data pipeline</div>
       <h4>24 JSON files, 373 KB total</h4>
-      <p>The Python notebook exports per-pixel results to compact JSON (16 individual model files + 8 ensemble statistic files). No backend needed at runtime - the browser fetches only the JSON for the current selection. Hosted on the Vercel free tier - €0/month, auto-deploys from GitHub.</p>
+      <p>The Python notebook exports per-pixel results to compact JSON (16 individual-model files + 8 ensemble files). No backend at runtime - the browser fetches only the layer you select. Vercel free tier, €0/month.</p>
       <small class="bts-tools">Python · NumPy · custom export script</small>
     </div>
     <div class="bts-card">
       <div class="bts-label">→ Map rendering</div>
       <h4>Live canvas + chroma-js</h4>
-      <p>JavaScript reads the JSON, renders each pixel to a small canvas via chroma-js color scales, then upscales to a larger image overlay with crisp-pixel rendering on Leaflet. Colormap switching is instant.</p>
+      <p>JavaScript renders each pixel to a small canvas via chroma-js color scales, then upscales to a crisp-pixel Leaflet overlay. Colormaps include colorblind-safe Viridis and Cividis; switching is instant, no re-fetch.</p>
       <small class="bts-tools">JavaScript · Leaflet.js · chroma-js · Canvas API</small>
     </div>
     <div class="bts-card">
       <div class="bts-label">→ Interactivity</div>
       <h4>Click-to-query the array</h4>
-      <p>Clicking the map computes the corresponding pixel index from the data's geographic extent, reads the raw value, and shows the exact W/m or W in a popup. Layer toggles add and remove overlays without re-fetching.</p>
+      <p>Clicking computes the pixel index from the data's geographic extent and shows the exact W/m or W in a popup - values interpolated from ~25 km climate cells. A scale bar and layer toggles round out the map UI.</p>
       <small class="bts-tools">Leaflet events · Pixel index math</small>
     </div>
     <div class="bts-card">
       <div class="bts-label">→ Development workflow</div>
-      <h4>AI-pair-programming throughout</h4>
-      <p>This site and the Python notebook behind it were built using AI-assisted development. <strong>Anthropic Claude</strong> was the primary pair-programmer for the web app (Leaflet rendering, JSON pipeline, chatbot integration). <strong>ChatGPT</strong> helped with the Python notebook (MATLAB-to-Python migration, scipy.optimize). I designed the architecture, reviewed every line, and own the system. AI accelerated the writing - the thinking stayed mine.</p>
-      <small class="bts-tools">Claude · ChatGPT · GitHub Copilot · manual review</small>
+      <h4>AI-assisted, human-owned</h4>
+      <p>Built with AI-assisted development - Claude as primary pair-programmer for the web app, ChatGPT for the notebook migration. Architecture, review, and every scientific decision: mine.</p>
+      <small class="bts-tools">Claude · ChatGPT · manual review</small>
     </div>
   </div>
 
