@@ -6,35 +6,33 @@
 <meta name="theme-color" content="#2d6a4f" />
 <meta name="author" content="Vaibhav Jaiswal" />
 <meta name="robots" content="index, follow" />
-<meta name="keywords" content="Master's thesis, geothermal energy, climate change, Germany, CMIP6, borehole heat exchanger, KIT, Karlsruhe, Applied Geosciences, Vaibhav Jaiswal, shallow geothermal, BHE, MFLS, climate projection" />
+<meta name="keywords" content="fullscreen map, geothermal potential, Germany, CMIP6, climate projection, interactive explorer, BHE, 8-model ensemble, Vaibhav Jaiswal, KIT" />
 
-<title>Master Thesis Project - Climate change & shallow geothermal in Germany - Vaibhav Jaiswal</title>
-<meta name="description" content="Live interactive maps of climate-projected geothermal potential in Germany. M.Sc. thesis at KIT coupling CMIP6 projections with borehole heat exchanger physics across 5 km resolution." />
+<title>Fullscreen Map Explorer - Master Thesis - Vaibhav Jaiswal</title>
+<meta name="description" content="Fullscreen interactive map explorer for the climate-projected geothermal potential of Germany. Switch between 8 CMIP6 models, scenarios, and 6 data layers. M.Sc. thesis at KIT." />
 
 <!-- Open Graph -->
-<meta property="og:type" content="article" />
+<meta property="og:type" content="website" />
 <meta property="og:site_name" content="Vaibhav Jaiswal Portfolio" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:title" content="Master Thesis - Climate change & geothermal in Germany" />
-<meta property="og:description" content="Live interactive maps of climate-projected geothermal potential in Germany. M.Sc. thesis at KIT coupling CMIP6 projections with borehole heat exchanger physics." />
-<meta property="og:url" content="/thesis//" />
-<meta property="og:image" content="/thesis//og-thesis.png" />
-<meta property="og:image:secure_url" content="/thesis//og-thesis.png" />
+<meta property="og:title" content="Fullscreen Map Explorer - Climate × Geothermal Germany" />
+<meta property="og:description" content="Fullscreen interactive map explorer for the climate-projected geothermal potential of Germany. 8 CMIP6 models, 2 scenarios, 6 data layers." />
+<meta property="og:url" content="/thesis/map-fullscreen.html" />
+<meta property="og:image" content="/thesis//og-map.png" />
+<meta property="og:image:secure_url" content="/thesis//og-map.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Climate-projected geothermal potential map of Germany with 5 km resolution heat extraction data" />
-<meta property="article:author" content="Vaibhav Jaiswal" />
-<meta property="article:section" content="Research" />
+<meta property="og:image:alt" content="Fullscreen interactive map of climate-projected geothermal potential across Germany" />
 
 <!-- Twitter / generic social card fallback -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Master Thesis - Climate change & geothermal in Germany" />
-<meta name="twitter:description" content="Live interactive maps of climate-projected geothermal potential in Germany. M.Sc. thesis at KIT." />
-<meta name="twitter:image" content="/thesis//og-thesis.png" />
-<meta name="twitter:image:alt" content="Climate-projected geothermal potential map of Germany with 5 km resolution heat extraction data" />
+<meta name="twitter:title" content="Fullscreen Map Explorer - Climate × Geothermal Germany" />
+<meta name="twitter:description" content="Interactive map explorer for climate-projected geothermal potential of Germany. 8 CMIP6 models, 2 scenarios, 6 data layers." />
+<meta name="twitter:image" content="/thesis//og-map.png" />
+<meta name="twitter:image:alt" content="Fullscreen interactive map of climate-projected geothermal potential across Germany" />
 
-<link rel="canonical" href="/thesis//" />
+<link rel="canonical" href="https://vaibhavjgeo.vercel.app/thesis/map-fullscreen.html" />
 
 <!-- Favicons -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f7f5f0'/%3E%3Ctext x='50' y='72' text-anchor='middle' fill='%232d6a4f' font-family='Georgia, serif' font-weight='700' font-style='italic' font-size='70'%3EV%3C/text%3E%3C/svg%3E" />
@@ -42,7 +40,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
@@ -51,21 +49,20 @@
   --bg: #f7f5f0; --bg-alt: #fdfcf8; --ink: #15201a; --ink-soft: #2d3d33; --ink-faint: #6b7a72;
   --muted: #6b7a72; --muted-soft: #9aa39c; --accent: #2d6a4f; --accent-deep: #1f4a37;
   --accent-soft: #e3ebe5; --accent-on: #ffffff; --paper: #ffffff; --card: #ffffff;
-  --line: #dde0d8; --line-strong: #15201a; --tag-bg: #e3ebe5; --tag-fg: #2d4d3d;
+  --line: #dde0d8; --line-strong: #15201a;
   --font-serif: 'Newsreader', Georgia, serif;
   --font-sans: 'IBM Plex Sans', -apple-system, sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
-  --max: 1200px; --gutter: 28px;
+  --max: 1400px; --gutter: 28px;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: hidden; }
-body { font-family: var(--font-sans); background: var(--bg); color: var(--ink); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+html, body { height: 100%; overflow: hidden; }
+body { font-family: var(--font-sans); background: var(--bg); color: var(--ink); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; }
 a { color: inherit; text-decoration: none; transition: color 0.2s; }
-.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 
-/* ============ NAV ============ */
-header.topbar { position: sticky; top: 0; z-index: 50; background: rgba(247, 245, 240, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
-.nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 16px var(--gutter); gap: 24px; max-width: var(--max); margin: 0 auto; }
+/* ============ NAV (matches homepage) ============ */
+header.topbar-fs { background: rgba(247, 245, 240, 0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); flex-shrink: 0; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px var(--gutter); gap: 24px; }
 .logo { font-family: var(--font-serif); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; color: var(--ink); }
 .logo-accent { color: var(--accent); }
 nav ul { display: flex; gap: 28px; list-style: none; font-family: var(--font-mono); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
@@ -81,256 +78,108 @@ nav a:hover, nav .active { color: var(--accent); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-/* ============ HERO ============ */
-.thesis-hero { max-width: var(--max); margin: 0 auto; padding: 80px var(--gutter) 60px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; align-items: center; }
-.thesis-hero .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--accent); margin-bottom: 24px; }
-.thesis-hero h1 { font-family: var(--font-serif); font-size: clamp(36px, 5.2vw, 64px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 26px; color: var(--ink); }
-.thesis-hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
-.thesis-hero .lead { font-size: 17px; line-height: 1.65; color: var(--ink-soft); margin-bottom: 30px; }
-.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
-.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; font-family: var(--font-sans); font-size: 14px; font-weight: 500; border-radius: 6px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent; }
-.btn-primary { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
-.btn-primary:hover { background: var(--accent-deep); transform: translateY(-1px); }
-.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
-.btn-ghost:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+/* ============ FULLSCREEN LAYOUT ============ */
+.fs-layout { display: grid; grid-template-columns: 340px 1fr; flex: 1; overflow: hidden; }
+.fs-sidebar { background: var(--bg-alt); border-right: 1px solid var(--line); overflow-y: auto; padding: 20px 22px; }
+.fs-map-area { position: relative; overflow: hidden; }
 
-.thesis-hero-visual { display: flex; justify-content: center; align-items: center; }
-.thesis-hero-svg { width: 100%; max-width: 460px; height: auto; }
-.heat-pulse { animation: heatPulse 3.5s ease-in-out infinite; transform-origin: 250px 350px; }
-@keyframes heatPulse { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.1); } }
-
-/* ============ SECTIONS ============ */
-.section-header { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); margin-bottom: 36px; }
-.section-header .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; color: var(--accent); margin-bottom: 16px; }
-.section-header h2 { font-family: var(--font-serif); font-size: clamp(30px, 4.2vw, 50px); font-weight: 600; letter-spacing: -0.022em; line-height: 1.05; color: var(--ink); margin-bottom: 14px; }
-.section-header h2 em { font-style: italic; color: var(--accent); font-weight: 500; }
-.section-header p { font-size: 16px; line-height: 1.65; color: var(--ink-soft); }
-
-section { padding: 70px 0; }
-section + section { border-top: 1px solid var(--line); }
-
-/* ============ ABSTRACT ============ */
-.abstract-section { background: var(--bg-alt); }
-.abstract-grid { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); display: grid; grid-template-columns: 180px 1fr; gap: 40px; align-items: start; }
-.abstract-grid .label { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); padding-top: 8px; border-top: 1px solid var(--ink); font-weight: 600; }
-.abstract-text { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.65; color: var(--ink); font-weight: 400; }
-.abstract-text .drop { font-size: 4rem; float: left; line-height: 0.9; margin: 8px 14px 0 0; color: var(--accent); font-weight: 700; font-style: italic; }
-
-/* ============ CITE ============ */
-.cite-section .cite-card { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
-.cite-card .cite-label { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; font-weight: 600; }
-.cite-card h3 { font-family: var(--font-serif); font-size: 28px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 24px; color: var(--ink); }
-.cite-formats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.cite-format { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; position: relative; }
-.cite-format-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
-.cite-text { font-family: var(--font-mono); font-size: 12px; line-height: 1.55; color: var(--ink); white-space: pre-wrap; word-break: break-word; padding-right: 70px; }
-.cite-copy { position: absolute; top: 16px; right: 16px; background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent-deep); padding: 5px 10px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; cursor: pointer; border-radius: 3px; transition: all 0.2s; }
-.cite-copy:hover { background: var(--accent); color: var(--accent-on); }
-.cite-copy.copied { background: var(--accent); color: var(--accent-on); }
-
-/* ============ FINDINGS ============ */
-.findings { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-.finding { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 26px 22px; transition: all 0.2s; }
-.finding:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(45, 106, 79, 0.08); }
-.finding .label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; font-weight: 600; }
-.finding .num { font-family: var(--font-serif); font-size: 40px; font-weight: 600; line-height: 1; color: var(--accent); margin-bottom: 10px; }
-.finding .num small { font-size: 18px; color: var(--muted); margin-left: 2px; }
-.finding p { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
-
-/* ============ METHODS ============ */
-.methods-flow { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-.method-step { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 28px 22px; }
-.method-step .step-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
-.method-step h4 { font-family: var(--font-serif); font-size: 20px; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
-.method-step p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 10px; }
-.method-step .tools { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.04em; }
-
-/* ============ EXPLORER ============ */
-.explorer-section { background: var(--bg-alt); padding-bottom: 80px; }
-.explorer-section .section-header { text-align: left; }
-.explorer-container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); display: grid; grid-template-columns: 320px 1fr; gap: 18px; }
-.explorer-sidebar { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; max-height: none; }
-.mode-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: var(--bg-alt); border: 1px solid var(--line); border-radius: 6px; padding: 3px; margin-bottom: 12px; }
-.mode-tab { padding: 7px 8px; text-align: center; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); cursor: pointer; border-radius: 4px; transition: all 0.2s; font-weight: 600; }
-.mode-tab small { display: block; font-size: 8px; font-weight: 400; margin-top: 1px; color: var(--muted-soft); }
+.mode-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 4px; margin-bottom: 20px; }
+.mode-tab { padding: 10px 12px; text-align: center; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); cursor: pointer; border-radius: 4px; transition: all 0.2s; font-weight: 600; }
+.mode-tab small { display: block; font-size: 9px; font-weight: 400; margin-top: 2px; color: var(--muted-soft); letter-spacing: 0.05em; }
 .mode-tab.active { background: var(--accent); color: var(--accent-on); }
 .mode-tab.active small { color: rgba(255,255,255,0.75); }
-.control-group { margin-bottom: 9px; }
-.control-group label { display: block; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 4px; font-weight: 600; }
-.control-group select { width: 100%; padding: 6px 10px; font-family: var(--font-sans); font-size: 12px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 4px; }
+
+.control-group { margin-bottom: 16px; }
+.control-group label { display: block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+.control-group select { width: 100%; padding: 9px 12px; font-family: var(--font-sans); font-size: 13px; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 4px; cursor: pointer; }
 .control-group select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
 
-.layer-toggles { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 6px; padding: 9px 10px; margin: 11px 0; }
-.layer-toggles h4 { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink); margin-bottom: 7px; font-weight: 600; }
-.layer-toggle { display: flex; align-items: center; gap: 7px; padding: 3px 0; cursor: pointer; font-size: 11.5px; color: var(--ink-soft); line-height: 1.35; }
+.layer-toggles { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 14px; margin: 18px 0; }
+.layer-toggles h4 { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink); margin-bottom: 12px; font-weight: 600; }
+.layer-toggle { display: flex; align-items: center; gap: 9px; padding: 6px 0; cursor: pointer; font-size: 12.5px; color: var(--ink-soft); }
 .layer-toggle:hover { color: var(--ink); }
 .layer-toggle input { margin: 0; cursor: pointer; }
-.swatch { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+.swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
 .swatch-heat { background: linear-gradient(135deg, #440154, #fde725); }
 .swatch-power { background: linear-gradient(135deg, #fff5f0, #67000d); }
 
-.legend-mini { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; margin-bottom: 7px; }
-.legend-mini h5 { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 5px; font-weight: 600; }
-.legend-mini .bar { height: 8px; border-radius: 2px; background: linear-gradient(to right, #440154, #fde725); margin-bottom: 3px; }
-.legend-mini .vals { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9px; color: var(--muted); }
+.legend-mini { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; margin-bottom: 12px; }
+.legend-mini h5 { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 8px; font-weight: 600; }
+.legend-mini .bar { height: 12px; border-radius: 3px; background: linear-gradient(to right, #440154, #fde725); margin-bottom: 6px; }
+.legend-mini .vals { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
 
-.source-card { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 8px 10px; border-radius: 0 4px 4px 0; margin-top: 10px; }
-.source-card p { font-size: 11px; line-height: 1.5; color: var(--ink-soft); }
+.source-card { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 12px 14px; border-radius: 0 4px 4px 0; margin-top: 16px; }
+.source-card p { font-size: 12px; line-height: 1.55; color: var(--ink-soft); }
 .source-card strong { color: var(--ink); font-weight: 600; }
 .source-card a { color: var(--accent-deep); text-decoration: underline; }
 
-.map-area { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; min-height: 600px; display: flex; }
-.map-title-overlay { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 6px; padding: 7px 14px; font-family: var(--font-mono); font-size: 11.5px; color: var(--ink); z-index: 500; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
-#map { width: 100%; flex: 1; min-height: 600px; background: var(--bg-alt); }
-.loading-overlay { position: absolute; inset: 0; background: rgba(247, 245, 240, 0.9); display: none; align-items: center; justify-content: center; gap: 12px; z-index: 600; font-family: var(--font-mono); font-size: 13px; color: var(--ink); }
+/* ============ MAP AREA ============ */
+.map-title-overlay { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 6px; padding: 8px 16px; font-family: var(--font-mono); font-size: 12px; color: var(--ink); z-index: 500; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+#map { width: 100%; height: 100%; background: var(--bg-alt); }
+.loading-overlay { position: absolute; inset: 0; background: rgba(247, 245, 240, 0.85); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; gap: 14px; z-index: 600; font-family: var(--font-mono); font-size: 13px; color: var(--ink); }
 .loading-overlay.active { display: flex; }
 .loading-overlay.hidden { display: none; }
 .spinner { width: 26px; height: 26px; border: 3px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.empty-state { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 32px; z-index: 500; background: var(--card); }
+.empty-state { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 40px; z-index: 500; background: var(--bg); }
 .empty-state.hidden { display: none; }
-.empty-state .inner { max-width: 520px; }
-.empty-state h2 { font-family: var(--font-serif); font-size: 28px; font-weight: 600; margin-bottom: 12px; color: var(--ink); }
+.empty-state .inner { max-width: 520px; text-align: center; }
+.empty-state h2 { font-family: var(--font-serif); font-size: 32px; font-weight: 600; margin-bottom: 14px; color: var(--ink); }
 .empty-state h2 em { font-style: italic; color: var(--accent); }
-.empty-state p { color: var(--ink-soft); margin-bottom: 16px; }
-.empty-state .steps ol { padding-left: 22px; }
-.empty-state .steps li { margin-bottom: 8px; font-size: 14px; color: var(--ink-soft); }
-.empty-state .steps code { font-family: var(--font-mono); font-size: 13px; background: var(--bg-alt); padding: 2px 6px; border-radius: 3px; }
+.empty-state p { color: var(--ink-soft); }
 
-/* ============ AI BANNER ============ */
-.ai-banner { background: var(--ink); color: var(--bg); }
-.ai-banner-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.ai-banner-card { background: rgba(45, 106, 79, 0.18); border: 1px solid rgba(127, 201, 160, 0.25); border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 18px; transition: all 0.2s; }
-.ai-banner-card:hover { background: rgba(45, 106, 79, 0.28); border-color: rgba(127, 201, 160, 0.45); }
-.ai-banner-card .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7fc9a0; font-weight: 600; }
-.ai-banner-card h3 { font-family: var(--font-serif); font-size: 26px; font-weight: 600; letter-spacing: -0.015em; color: var(--bg); }
-.ai-banner-card h3 em { font-style: italic; color: #7fc9a0; font-weight: 500; }
-.ai-banner-card p { font-size: 14.5px; line-height: 1.6; color: rgba(247, 245, 240, 0.78); flex-grow: 1; }
-.btn-ai { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; background: #7fc9a0; color: var(--ink); border-radius: 6px; font-family: var(--font-sans); font-size: 13.5px; font-weight: 600; transition: all 0.2s; align-self: flex-start; border: 1px solid #7fc9a0; }
-.btn-ai:hover { background: var(--bg); border-color: var(--bg); transform: translateY(-1px); }
+.leaflet-popup-content-wrapper { border-radius: 6px; }
+.leaflet-popup-content { font-family: var(--font-sans); font-size: 13px; line-height: 1.5; }
 
-/* ============ BTS (Behind the scenes) ============ */
-.behind-section { background: var(--bg-alt); }
-.bts-grid { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
-.bts-card { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 26px; transition: all 0.2s; }
-.bts-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-.bts-card .bts-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px; font-weight: 600; }
-.bts-card h4 { font-family: var(--font-serif); font-size: 20px; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
-.bts-card p { font-size: 14px; line-height: 1.65; color: var(--ink-soft); margin-bottom: 12px; }
-.bts-card p strong { font-weight: 600; color: var(--ink); }
-.bts-tools { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.04em; }
-.bts-links { max-width: var(--max); margin: 32px auto 0; padding: 0 var(--gutter); display: flex; flex-wrap: wrap; gap: 12px; }
-
-/* ============ FOOTER ============ */
-footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-top: 4px solid var(--accent); }
-.footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 48px; }
-.footer-inner .footer-tagline { font-family: var(--font-serif); font-size: clamp(28px, 3.5vw, 44px); font-weight: 600; letter-spacing: -0.022em; line-height: 1.1; max-width: 600px; color: var(--bg); margin-bottom: 22px; }
-.footer-inner .footer-tagline em { color: #7fc9a0; font-style: italic; font-weight: 500; }
-.footer-inner h4 { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; color: #8aa295; font-weight: 500; }
-.footer-inner p { font-size: 14px; line-height: 1.65; color: rgba(247, 245, 240, 0.75); max-width: 540px; }
-.footer-inner ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.footer-inner a { font-size: 14px; color: var(--bg); }
-.footer-inner a:hover { color: #7fc9a0; }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px var(--gutter) 0; max-width: var(--max); margin: 0 auto; border-top: 1px solid #2d3d33; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #8aa295; }
-
-/* ============ CHAT FAB (floating button + slide-in panel) ============ */
-.chat-fab { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: var(--accent); color: var(--accent-on); border: none; border-radius: 50%; cursor: pointer; box-shadow: 0 6px 20px rgba(45, 106, 79, 0.35); display: flex; align-items: center; justify-content: center; z-index: 1000; transition: all 0.2s; }
-.chat-fab:hover { background: var(--accent-deep); transform: scale(1.05); }
-.chat-fab.hidden { display: none; }
-.chat-panel { position: fixed; bottom: 24px; right: 24px; width: 420px; max-width: calc(100vw - 48px); height: 600px; max-height: calc(100vh - 60px); background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.18); z-index: 1001; display: flex; flex-direction: column; overflow: hidden; transform: translateY(20px); opacity: 0; pointer-events: none; transition: all 0.2s; }
-.chat-panel.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-.chat-panel-header { padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; background: var(--accent); color: var(--accent-on); }
-.chat-panel-header h4 { font-family: var(--font-serif); font-size: 16px; font-weight: 600; }
-.chat-panel-close { background: none; border: none; color: var(--accent-on); cursor: pointer; padding: 4px; }
-.chat-panel iframe { width: 100%; height: 100%; flex: 1; border: 0; }
-
-/* ============ RESPONSIVE: tablet (≤1024px) ============ */
-@media (max-width: 1024px) {
-  .thesis-hero { grid-template-columns: 1fr; gap: 36px; padding: 60px var(--gutter) 50px; }
-  .thesis-hero-visual { order: -1; }
-  .thesis-hero-svg { max-width: 360px; }
-  .findings, .methods-flow { grid-template-columns: repeat(2, 1fr); }
-  .explorer-container { grid-template-columns: 1fr; }
-  .cite-formats, .ai-banner-inner { grid-template-columns: 1fr; }
-  .abstract-grid { grid-template-columns: 1fr; gap: 20px; }
-  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
-  .map-area, #map { min-height: 480px; }
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .fs-layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .fs-sidebar { border-right: none; border-bottom: 1px solid var(--line); max-height: 45vh; }
 }
 
-/* ============ RESPONSIVE: large mobile (≤768px) ============ */
 @media (max-width: 768px) {
-  :root { --gutter: 22px; }
+  :root { --gutter: 18px; }
   .nav-toggle { display: inline-flex; }
-  #primary-nav { position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+  #primary-nav { position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.25s ease; z-index: 1000; }
   #primary-nav.open { max-height: 320px; padding: 8px 0 16px; }
   #primary-nav ul { display: flex; flex-direction: column; gap: 0; padding: 0 var(--gutter); }
   #primary-nav li { border-bottom: 1px solid var(--line); }
   #primary-nav li:last-child { border-bottom: none; }
   #primary-nav a { display: block; padding: 14px 0; font-size: 13px; }
-  .nav-inner { position: relative; }
-  section { padding: 56px 0; }
-  .thesis-hero { padding: 48px var(--gutter) 40px; gap: 28px; }
-  .thesis-hero h1 { margin-bottom: 20px; }
-  .thesis-hero .lead { font-size: 16px; margin-bottom: 24px; }
-  .hero-cta { gap: 10px; flex-wrap: wrap; }
-  .btn { padding: 11px 18px; font-size: 13.5px; }
-  .section-header { margin-bottom: 28px; }
-  .section-header h2 { font-size: clamp(26px, 6vw, 38px); }
-  .abstract-text { font-size: 1.05rem; }
-  .abstract-text .drop { font-size: 3rem; }
-  .findings { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .finding { padding: 22px 18px; }
-  .finding .num { font-size: 32px; }
-  .methods-flow { grid-template-columns: 1fr; gap: 14px; }
-  .method-step { padding: 22px 20px; }
-  .cite-format { padding: 16px; }
-  .cite-text { font-size: 11px; }
-  .cite-copy { top: 12px; right: 12px; padding: 4px 8px; }
-  .explorer-sidebar { padding: 14px; }
-  .map-area, #map { min-height: 420px; }
-  .ai-banner-card { padding: 26px 22px; }
-  .ai-banner-card h3 { font-size: 22px; }
-  .bts-grid { grid-template-columns: 1fr; gap: 14px; }
-  .bts-card { padding: 22px 20px; }
-}
-
-/* ============ RESPONSIVE: small mobile (≤520px) ============ */
-@media (max-width: 520px) {
-  :root { --gutter: 18px; }
+  .nav-inner { position: relative; padding: 10px var(--gutter); }
   .nav-github span { display: none; }
   .nav-github { padding: 7px 10px; }
-  section { padding: 44px 0; }
-  .thesis-hero { padding: 36px var(--gutter) 32px; gap: 24px; }
-  .thesis-hero .eyebrow { font-size: 11px; margin-bottom: 18px; }
-  .thesis-hero .lead { font-size: 15px; }
-  .hero-cta { flex-direction: column; align-items: stretch; }
-  .hero-cta .btn { width: 100%; justify-content: center; }
-  .thesis-hero-svg { max-width: 280px; }
-  .findings { grid-template-columns: 1fr; }
-  .finding .num { font-size: 28px; }
-  .abstract-grid { padding: 0 var(--gutter); }
-  .abstract-text { font-size: 1rem; }
-  .abstract-text .drop { font-size: 2.6rem; margin: 4px 10px 0 0; }
-  .cite-formats { gap: 12px; }
-  .cite-format { padding: 14px; }
-  .cite-text { font-size: 10.5px; padding-right: 60px; }
-  .method-step h4 { font-size: 18px; }
-  .map-area, #map { min-height: 360px; }
-  .map-title-overlay { font-size: 10px; padding: 6px 10px; }
-  .ai-banner-card { padding: 22px 20px; }
-  .ai-banner-card h3 { font-size: 20px; }
-  .ai-banner-card p { font-size: 13.5px; }
-  .bts-card { padding: 20px 18px; }
-  .bts-card h4 { font-size: 18px; }
-  .footer-bottom { flex-direction: column; gap: 12px; align-items: flex-start; padding-top: 20px; }
-  .chat-fab { width: 50px; height: 50px; bottom: 20px; right: 20px; }
-  .chat-panel { width: 100vw; height: 100vh; bottom: 0; right: 0; max-width: 100vw; max-height: 100vh; border-radius: 0; }
+  .logo { font-size: 16px; }
+  .fs-sidebar { padding: 14px 16px; max-height: 42vh; }
+  .mode-tabs { padding: 3px; margin-bottom: 14px; }
+  .mode-tab { padding: 8px 10px; font-size: 10px; }
+  .mode-tab small { font-size: 8.5px; }
+  .control-group { margin-bottom: 12px; }
+  .control-group label { font-size: 10px; }
+  .control-group select { padding: 8px 10px; font-size: 12.5px; }
+  .layer-toggles { padding: 12px; margin: 14px 0; }
+  .layer-toggle { font-size: 12px; }
+  .legend-mini { padding: 9px 11px; }
+  .source-card { padding: 9px 11px; }
+  .source-card p { font-size: 11px; }
+  .map-title-overlay { font-size: 10px; padding: 6px 10px; top: 10px; }
+}
+
+@media (max-width: 520px) {
+  .fs-sidebar { max-height: 40vh; padding: 12px 14px; }
+  .mode-tabs { margin-bottom: 10px; }
+  .mode-tab { padding: 7px 8px; font-size: 9.5px; }
+  .control-group { margin-bottom: 10px; }
+  .layer-toggle { padding: 4px 0; font-size: 11.5px; }
+  .swatch { width: 11px; height: 11px; }
+  .legend-mini h5 { font-size: 9px; }
+  .legend-mini .vals { font-size: 9px; }
 }
 </style>
 </head>
 <body>
 
-<header class="topbar">
+<header class="topbar-fs">
   <div class="nav-inner">
     <a href="https://vaibhavjgeo.vercel.app/" class="logo" aria-label="Home">Vaibhav <span class="logo-accent">Jaiswal</span></a>
     <nav id="primary-nav">
@@ -352,593 +201,164 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
   </div>
 </header>
 
-<!-- ============ THESIS HERO ============ -->
-<section class="thesis-hero">
-  <div>
-    <div class="eyebrow">M.Sc. Thesis · KIT · 2026</div>
-    <h1>Climate change & the future of <em>shallow geothermal</em> energy in Germany.</h1>
-    <p class="lead">A semi-analytical model coupling CMIP6 climate projections with borehole heat exchanger physics, quantifying how a warming subsurface reshapes Germany's renewable heating potential through 2100.</p>
-    <div class="hero-cta">
-      <a href="https://vaibhavjgeo.vercel.app/thesis/map-fullscreen.html" target="_blank" rel="noopener" class="btn btn-primary">
-        Explore the live maps
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
-      </a>
-      <a href="#methods" class="btn btn-ghost">View methodology</a>
-      <a href="https://github.com/vaibhavjgeo/master-thesis" target="_blank" rel="noopener" class="btn btn-ghost">View source on GitHub</a>
-    </div>
-  </div>
+<div class="fs-layout">
+  <aside class="fs-sidebar">
 
-  <div class="thesis-hero-visual">
-    <svg class="thesis-hero-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#d8e6ee"/>
-          <stop offset="100%" stop-color="#a4c0d4"/>
-        </linearGradient>
-        <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#c5d8c8"/>
-          <stop offset="22%" stop-color="#9bbf9f"/>
-          <stop offset="45%" stop-color="#a8a368"/>
-          <stop offset="70%" stop-color="#c4823a"/>
-          <stop offset="100%" stop-color="#9a3f15"/>
-        </linearGradient>
-        <linearGradient id="cold-pipe" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#5a8fb0"/>
-          <stop offset="100%" stop-color="#3d6f8c"/>
-        </linearGradient>
-        <linearGradient id="hot-pipe" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#a04a1e"/>
-          <stop offset="100%" stop-color="#d97a3f"/>
-        </linearGradient>
-        <linearGradient id="ubend" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#3d6f8c"/>
-          <stop offset="50%" stop-color="#7a5a3a"/>
-          <stop offset="100%" stop-color="#a04a1e"/>
-        </linearGradient>
-        <radialGradient id="heat" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0%" stop-color="#d97a3f" stop-opacity="0.5"/>
-          <stop offset="100%" stop-color="#d97a3f" stop-opacity="0"/>
-        </radialGradient>
-        <marker id="arrow-cold" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-          <path d="M 0 0 L 6 3 L 0 6 z" fill="#3d6f8c"/>
-        </marker>
-        <marker id="arrow-hot" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-          <path d="M 0 0 L 6 3 L 0 6 z" fill="#a04a1e"/>
-        </marker>
-      </defs>
-
-      <!-- Sky (cold) -->
-      <rect x="0" y="0" width="500" height="180" fill="url(#sky)"/>
-
-      <!-- Sun (top right) -->
-      <g>
-        <circle cx="425" cy="75" r="26" fill="#fcd968" opacity="0.14"/>
-        <circle cx="425" cy="75" r="18" fill="#fcd968" opacity="0.38"/>
-        <circle cx="425" cy="75" r="12" fill="#fcd968"/>
-        <g stroke="#fcd968" stroke-width="1.8" stroke-linecap="round" opacity="0.55">
-          <line x1="425" y1="42" x2="425" y2="50"/>
-          <line x1="425" y1="100" x2="425" y2="108"/>
-          <line x1="392" y1="75" x2="400" y2="75"/>
-          <line x1="450" y1="75" x2="458" y2="75"/>
-          <line x1="402" y1="52" x2="408" y2="58"/>
-          <line x1="442" y1="92" x2="448" y2="98"/>
-          <line x1="402" y1="98" x2="408" y2="92"/>
-          <line x1="442" y1="58" x2="448" y2="52"/>
-        </g>
-      </g>
-
-      <!-- Earth (green at top, warm/hot at bottom) -->
-      <rect x="0" y="180" width="500" height="320" fill="url(#ground)"/>
-
-      <!-- Depth grid lines -->
-      <line x1="0" y1="240" x2="500" y2="240" stroke="#1f4a37" stroke-width="0.5" opacity="0.4" stroke-dasharray="2,4"/>
-      <line x1="0" y1="320" x2="500" y2="320" stroke="#7a5a3a" stroke-width="0.5" opacity="0.4" stroke-dasharray="2,4"/>
-      <line x1="0" y1="400" x2="500" y2="400" stroke="#9a3f15" stroke-width="0.5" opacity="0.5" stroke-dasharray="2,4"/>
-
-      <!-- Heat halo around U-bend (warm orange) -->
-      <ellipse cx="250" cy="460" rx="150" ry="80" fill="url(#heat)" class="heat-pulse"/>
-
-      <!-- House (left side, above ground) -->
-      <g>
-        <!-- Roof -->
-        <path d="M 78 142 L 130 96 L 182 142 Z" fill="#a04a1e" stroke="#7a2e10" stroke-width="0.6"/>
-        <!-- Body -->
-        <rect x="86" y="140" width="88" height="40" fill="#e8d8c0" stroke="#1f4a37" stroke-width="0.8"/>
-        <!-- Door -->
-        <rect x="118" y="158" width="20" height="22" fill="#4a3b2a"/>
-        <circle cx="134" cy="170" r="0.8" fill="#fcd968"/>
-        <!-- Left window -->
-        <rect x="94" y="148" width="14" height="14" fill="#a4c0d4" stroke="#1f4a37" stroke-width="0.4"/>
-        <line x1="94" y1="155" x2="108" y2="155" stroke="#1f4a37" stroke-width="0.3"/>
-        <line x1="101" y1="148" x2="101" y2="162" stroke="#1f4a37" stroke-width="0.3"/>
-        <!-- Right window -->
-        <rect x="150" y="148" width="14" height="14" fill="#a4c0d4" stroke="#1f4a37" stroke-width="0.4"/>
-        <line x1="150" y1="155" x2="164" y2="155" stroke="#1f4a37" stroke-width="0.3"/>
-        <line x1="157" y1="148" x2="157" y2="162" stroke="#1f4a37" stroke-width="0.3"/>
-        <!-- Chimney -->
-        <rect x="156" y="102" width="8" height="22" fill="#7a2e10"/>
-        <!-- Smoke -->
-        <circle cx="160" cy="94" r="3.5" fill="#d8e6ee" opacity="0.75"/>
-        <circle cx="163" cy="86" r="2.5" fill="#d8e6ee" opacity="0.5"/>
-      </g>
-
-      <!-- Connector from house to heat pump -->
-      <line x1="174" y1="170" x2="222" y2="170" stroke="#15201a" stroke-width="1.2" opacity="0.7"/>
-
-      <!-- Heat pump unit (cream/silver, not black) -->
-      <g>
-        <text x="250" y="142" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="#1f4a37" letter-spacing="0.4">HEAT PUMP</text>
-        <rect x="222" y="148" width="56" height="32" fill="#e8e3d8" stroke="#1f4a37" stroke-width="1" rx="3"/>
-        <line x1="228" y1="156" x2="272" y2="156" stroke="#9aa39c" stroke-width="0.5"/>
-        <line x1="228" y1="161" x2="272" y2="161" stroke="#9aa39c" stroke-width="0.5"/>
-        <line x1="228" y1="166" x2="272" y2="166" stroke="#9aa39c" stroke-width="0.5"/>
-        <circle cx="268" cy="174" r="2" fill="#2d6a4f"/>
-      </g>
-
-      <!-- Two pipes -->
-      <rect x="234" y="180" width="8" height="250" fill="url(#cold-pipe)" rx="2"/>
-      <rect x="258" y="180" width="8" height="250" fill="url(#hot-pipe)" rx="2"/>
-
-      <!-- U-bend (gradient cold->hot showing the heat exchange) -->
-      <path d="M 238 430 C 238 470, 262 470, 262 430" stroke="url(#ubend)" stroke-width="8" fill="none" stroke-linecap="round"/>
-
-      <!-- Cold-water flow arrows (down, left pipe) -->
-      <g stroke="#3d6f8c" stroke-width="1.4" fill="none">
-        <path d="M 238 215 L 238 238" marker-end="url(#arrow-cold)"/>
-        <path d="M 238 280 L 238 303" marker-end="url(#arrow-cold)"/>
-        <path d="M 238 350 L 238 373" marker-end="url(#arrow-cold)"/>
-        <path d="M 238 400 L 238 423" marker-end="url(#arrow-cold)"/>
-      </g>
-      <!-- Hot-water flow arrows (up, right pipe) -->
-      <g stroke="#a04a1e" stroke-width="1.4" fill="none">
-        <path d="M 262 423 L 262 400" marker-end="url(#arrow-hot)"/>
-        <path d="M 262 373 L 262 350" marker-end="url(#arrow-hot)"/>
-        <path d="M 262 303 L 262 280" marker-end="url(#arrow-hot)"/>
-        <path d="M 262 238 L 262 215" marker-end="url(#arrow-hot)"/>
-      </g>
-
-      <!-- Depth labels -->
-      <g font-family="IBM Plex Mono, monospace" font-size="9" fill="#1f4a37" opacity="0.75">
-        <text x="20" y="245">0 m</text>
-        <text x="20" y="325" fill="#7a5a3a">50 m</text>
-        <text x="20" y="405" fill="#9a3f15">100 m</text>
-      </g>
-
-      <!-- Temperature labels (right side) -->
-      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#1f4a37">
-        <text x="330" y="245">+0.8°C</text>
-        <text x="330" y="325" fill="#7a5a3a">+1.7°C</text>
-        <text x="330" y="405" fill="#9a3f15">+2.5°C</text>
-      </g>
-
-      <!-- Cold-in / Hot-out labels -->
-      <g font-family="IBM Plex Mono, monospace" font-size="8" font-weight="600" letter-spacing="0.5">
-        <text x="228" y="208" text-anchor="end" fill="#3d6f8c">COLD WATER IN</text>
-        <text x="272" y="208" text-anchor="start" fill="#a04a1e">HOT WATER OUT</text>
-      </g>
-
-      <!-- Title -->
-      <g font-family="Newsreader, serif" font-size="11" fill="#15201a" font-style="italic" opacity="0.6">
-        <text x="20" y="40">Borehole heat exchanger</text>
-        <text x="20" y="56" font-size="9" font-style="normal" font-family="IBM Plex Mono">downstream Germany subsurface</text>
-      </g>
-    </svg>
-  </div>
-</section>
-
-<!-- ============ ABSTRACT ============ -->
-<section id="abstract" class="abstract-section">
-  <div class="abstract-grid">
-    <div class="label">Abstract</div>
-    <div class="abstract-text">
-      <span class="drop">U</span>rban centers face increasing pressure to achieve carbon neutrality. This thesis develops a Python-based analytical model that couples CMIP6 climate projections with borehole heat exchanger physics, quantifying how a warming subsurface reshapes the geothermal heat-extraction potential across Germany under SSP 2-4.5 and SSP 5-8.5 scenarios, over 50-year and 100-year sustainable operating horizons.
-    </div>
-  </div>
-</section>
-
-<!-- ============ CITE THIS THESIS ============ -->
-<section id="cite" class="cite-section">
-  <div class="cite-card">
-    <div class="cite-label">→ Cite this work</div>
-    <h3>If you reference this thesis</h3>
-    <div class="cite-formats">
-      <div class="cite-format">
-        <div class="cite-format-label">APA</div>
-        <pre class="cite-text" id="cite-apa">Jaiswal, V. (2026). Impact of Climate Change on the Geothermal Potential of Closed Systems Using GIS and Python (Master's thesis). Karlsruhe Institute of Technology (KIT).</pre>
-        <button class="cite-copy" data-target="cite-apa">Copy</button>
+    <div class="mode-tabs">
+      <div class="mode-tab active" data-mode="individual">
+        Individual<small>1 of 8</small>
       </div>
-      <div class="cite-format">
-        <div class="cite-format-label">BibTeX</div>
-        <pre class="cite-text" id="cite-bibtex">@mastersthesis{jaiswal2026geothermal,
-  title  = {Impact of Climate Change on the Geothermal Potential of Closed Systems Using GIS and Python},
-  author = {Jaiswal, Vaibhav},
-  year   = {2026},
-  school = {Karlsruhe Institute of Technology (KIT)},
-  type   = {M.Sc. Thesis},
-  url    = {/thesis/}
-}</pre>
-        <button class="cite-copy" data-target="cite-bibtex">Copy</button>
+      <div class="mode-tab" data-mode="ensemble">
+        Ensemble<small>8-model</small>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ============ KEY FINDINGS ============ -->
-<section id="findings">
-  <div class="section-header">
-    <div class="eyebrow">§ 02 - Key results</div>
-    <h2>Warming substantially boosts <em>geothermal yield</em>.</h2>
-    <p>Each degree of subsurface warming effectively substitutes ~4 metres of drilling depth, a measurable economic and physical lever.</p>
-  </div>
-
-  <div class="findings">
-    <div class="finding">
-      <div class="label">SSP 2-4.5 by 2100</div>
-      <div class="num">+1.7<small>°C</small></div>
-      <p>Mean shallow ground temperature rise under modest mitigation (±0.6 °C across the CMIP6 ensemble).</p>
-    </div>
-    <div class="finding">
-      <div class="label">SSP 5-8.5 by 2100</div>
-      <div class="num">+3.1<small>°C</small></div>
-      <p>Subsurface warming under high-emissions trajectory (±1.1 °C ensemble spread).</p>
-    </div>
-    <div class="finding">
-      <div class="label">Extraction efficiency</div>
-      <div class="num">+8-24<small>%</small></div>
-      <p>Increase in geothermal heat-extraction potential by 2100 vs. current baseline conditions.</p>
-    </div>
-    <div class="finding">
-      <div class="label">Drilling equivalent</div>
-      <div class="num">~4<small>m / °C</small></div>
-      <p>Each 1 °C of warming substitutes roughly 4 m of borehole depth for equivalent heat supply.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ METHODS ============ -->
-<section id="methods">
-  <div class="section-header">
-    <div class="eyebrow">§ 03 - Workflow</div>
-    <h2>From climate model to <em>borehole physics</em>.</h2>
-    <p>Four-stage pipeline integrating CMIP6 ensembles, FLS-based heat-transport modeling, and interactive geospatial visualization.</p>
-  </div>
-
-  <div class="methods-flow">
-    <div class="method-step">
-      <div class="step-num">-> 01 / DATA</div>
-      <h4>CMIP6 acquisition</h4>
-      <p>8 GCMs from Google Earth Engine under SSP 2-4.5 & SSP 5-8.5; reprojected to EPSG:4326.</p>
-      <small class="tools">Python · Google Earth Engine · rasterio</small>
-    </div>
-    <div class="method-step">
-      <div class="step-num">-> 02 / MODEL</div>
-      <h4>FLS heat transport</h4>
-      <p>Finite Line Source theory (Rivera 2017) with superposed surface boundary heating.</p>
-      <small class="tools">NumPy · SciPy · FLS theory</small>
-    </div>
-    <div class="method-step">
-      <div class="step-num">-> 03 / SOLVE</div>
-      <h4>Brent's iteration</h4>
-      <p>Root-finding for sustainable extraction rate at minimum fluid temperature.</p>
-      <small class="tools">scipy.optimize · Brent's method</small>
-    </div>
-    <div class="method-step">
-      <div class="step-num">-> 04 / VISUAL</div>
-      <h4>Live JS rendering</h4>
-      <p>Per-pixel data exported as JSON, rendered with Leaflet + chroma-js for live colormap switching.</p>
-      <small class="tools">JSON · Leaflet.js · chroma-js · Canvas</small>
-    </div>
-  </div>
-</section>
-
-<!-- ============ INTERACTIVE EXPLORER ============ -->
-<section id="explorer" class="explorer-section">
-  <div class="section-header">
-    <div class="eyebrow">§ 04 - Interactive Explorer</div>
-    <h2>Browse <em>every</em> map in this thesis.</h2>
-    <p>Real BHE simulation output rendered live in your browser. Switch climate models, scenarios, color schemes, and toggle individual layers - all instantly.</p>
-    <a href="https://vaibhavjgeo.vercel.app/thesis/map-fullscreen.html" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 24px;">
-      Open in fullscreen
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
-    </a>
-  </div>
-
-  <div class="explorer-container">
-    <aside class="explorer-sidebar">
-      <div class="mode-tabs">
-        <div class="mode-tab active" data-mode="individual">
-          Individual<small>1 of 8</small>
-        </div>
-        <div class="mode-tab" data-mode="ensemble">
-          Ensemble<small>8-model stats</small>
-        </div>
-      </div>
-
-      <div id="individual-controls">
-        <div class="control-group">
-          <label for="model-select">Climate Model (GCM)</label>
-          <select id="model-select">
-            <option value="BBC">BBC</option>
-            <option value="CanESM" selected>CanESM</option>
-            <option value="GFDL">GFDL</option>
-            <option value="GISS">GISS</option>
-            <option value="HadGEM">HadGEM</option>
-            <option value="IPSL">IPSL</option>
-            <option value="MIROC">MIROC</option>
-            <option value="MPI">MPI</option>
-          </select>
-        </div>
-
-        <div class="control-group">
-          <label for="scenario-individual">Climate Scenario (SSP)</label>
-          <select id="scenario-individual">
-            <option value="ssp245" selected>SSP 2-4.5 (modest mitigation)</option>
-            <option value="ssp585">SSP 5-8.5 (high emissions)</option>
-          </select>
-        </div>
-      </div>
-
-      <div id="ensemble-controls" style="display:none;">
-        <div class="control-group">
-          <label for="stat-select">Ensemble Statistic</label>
-          <select id="stat-select">
-            <option value="mean" selected>Mean (μ)</option>
-            <option value="p25">25th Percentile</option>
-            <option value="p50">Median (P50)</option>
-            <option value="p75">75th Percentile</option>
-          </select>
-        </div>
-
-        <div class="control-group">
-          <label for="scenario-ensemble">Climate Scenario (SSP)</label>
-          <select id="scenario-ensemble">
-            <option value="ssp245" selected>SSP 2-4.5 (modest mitigation)</option>
-            <option value="ssp585">SSP 5-8.5 (high emissions)</option>
-          </select>
-        </div>
-      </div>
-
+    <div id="individual-controls">
       <div class="control-group">
-        <label for="cmap-heat">Heat Extraction Colormap</label>
-        <select id="cmap-heat">
-          <option value="viridis" selected>Viridis (default)</option>
-          <option value="plasma">Plasma</option>
-          <option value="inferno">Inferno</option>
-          <option value="magma">Magma</option>
-          <option value="cividis">Cividis</option>
-          <option value="turbo">Turbo</option>
-          <option value="ylgnbu">YlGnBu</option>
-          <option value="bugn">BuGn</option>
-          <option value="coolwarm">Coolwarm</option>
+        <label for="model-select">Climate Model (GCM)</label>
+        <select id="model-select">
+          <option value="BBC">BCC-CSM2-MR</option>
+          <option value="CanESM" selected>CanESM5</option>
+          <option value="GFDL">GFDL-ESM4</option>
+          <option value="GISS">GISS-E2-1-G</option>
+          <option value="HadGEM">HadGEM3-GC31-LL</option>
+          <option value="IPSL">IPSL-CM6A-LR</option>
+          <option value="MIROC">MIROC6</option>
+          <option value="MPI">MPI-ESM1-2-HR</option>
         </select>
       </div>
 
       <div class="control-group">
-        <label for="cmap-power">Usable Power Colormap</label>
-        <select id="cmap-power">
-          <option value="reds" selected>Reds (default)</option>
-          <option value="oranges">Oranges</option>
-          <option value="ylorrd">YlOrRd</option>
-          <option value="purd">PuRd</option>
-          <option value="hot">Hot</option>
-          <option value="autumn">Autumn</option>
-          <option value="copper">Copper</option>
+        <label for="scenario-individual">Climate Scenario (SSP)</label>
+        <select id="scenario-individual">
+          <option value="ssp245" selected>SSP 2-4.5 (modest mitigation)</option>
+          <option value="ssp585">SSP 5-8.5 (high emissions)</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="ensemble-controls" style="display:none;">
+      <div class="control-group">
+        <label for="stat-select">Ensemble Statistic</label>
+        <select id="stat-select">
+          <option value="mean" selected>Mean (μ)</option>
+          <option value="p25">25th Percentile</option>
+          <option value="p50">Median (P50)</option>
+          <option value="p75">75th Percentile</option>
         </select>
       </div>
 
-      <div class="layer-toggles">
-        <h4>Toggleable Layers</h4>
-        <label class="layer-toggle">
-          <input type="checkbox" data-layer="ql_Urban_50yr" checked>
-          <span class="swatch swatch-heat"></span>
-          <span class="name">Max Heat Extraction Rate (50yr)</span>
-        </label>
-        <label class="layer-toggle">
-          <input type="checkbox" data-layer="EnerUrb_50yr">
-          <span class="swatch swatch-power"></span>
-          <span class="name">Usable Power (50yr)</span>
-        </label>
-        <label class="layer-toggle">
-          <input type="checkbox" data-layer="ql_UrbanRenew_50yr">
-          <span class="swatch swatch-heat"></span>
-          <span class="name">Sustainable Heat Extraction Rate (50yr)</span>
-        </label>
-        <label class="layer-toggle">
-          <input type="checkbox" data-layer="EnerUrbRenew_50yr">
-          <span class="swatch swatch-power"></span>
-          <span class="name">Usable Power non-renewable</span>
-        </label>
-        <label class="layer-toggle">
-          <input type="checkbox" data-layer="ql_UrbanRenew_max_100yr">
-          <span class="swatch swatch-heat"></span>
-          <span class="name">Max Sustainable Heat Extraction Rate (100yr)</span>
-        </label>
-        <label class="layer-toggle">
-          <input type="checkbox" data-layer="EnerUrbRenew_100yr">
-          <span class="swatch swatch-power"></span>
-          <span class="name">Usable Power renewable (100yr)</span>
-        </label>
+      <div class="control-group">
+        <label for="scenario-ensemble">Climate Scenario (SSP)</label>
+        <select id="scenario-ensemble">
+          <option value="ssp245" selected>SSP 2-4.5 (modest mitigation)</option>
+          <option value="ssp585">SSP 5-8.5 (high emissions)</option>
+        </select>
       </div>
+    </div>
 
-      <div class="legend-mini">
-        <h5>Heat Extraction Rate (W/m)</h5>
-        <div class="bar" id="legend-bar-heat"></div>
-        <div class="vals"><span>2</span><span>14</span><span>27</span><span>41</span><span>55</span></div>
-      </div>
-      <div class="legend-mini">
-        <h5>Usable Power (W)</h5>
-        <div class="bar" id="legend-bar-power"></div>
-        <div class="vals"><span>100</span><span>1575</span><span>3050</span><span>4525</span><span>6000</span></div>
-      </div>
+    <div class="control-group">
+      <label for="cmap-heat">Heat Extraction Colormap</label>
+      <select id="cmap-heat">
+        <option value="viridis" selected>Viridis (default)</option>
+          <option value="cividis">Cividis (colorblind-safe)</option>
+        <option value="plasma">Plasma</option>
+        <option value="inferno">Inferno</option>
+        <option value="magma">Magma</option>
+        <option value="cividis">Cividis</option>
+        <option value="turbo">Turbo</option>
+        <option value="ylgnbu">YlGnBu</option>
+        <option value="bugn">BuGn</option>
+      </select>
+    </div>
 
-      <div class="source-card">
-        <p><strong>Tip:</strong> Click anywhere on the map to see the exact value at that point.<br><br>
-        <strong>Source:</strong> <a href="https://github.com/vaibhavjgeo/master-thesis" target="_blank">GitHub repo</a> · <a href="files/Single_BHE_Analysis_GEE_CMIP6_Folium.ipynb" target="_blank">Notebook</a></p>
-      </div>
-    </aside>
+    <div class="control-group">
+      <label for="cmap-power">Usable Power Colormap</label>
+      <select id="cmap-power">
+        <option value="reds" selected>Reds (default)</option>
+        <option value="oranges">Oranges</option>
+        <option value="ylorrd">YlOrRd</option>
+        <option value="purd">PuRd</option>
+        <option value="hot">Hot</option>
+        <option value="autumn">Autumn</option>
+        <option value="copper">Copper</option>
+      </select>
+    </div>
 
-    <div class="map-area">
-      <div class="map-title-overlay" id="map-title">Loading...</div>
-      <div id="map"></div>
-      <div class="loading-overlay" id="loader">
-        <div class="spinner"></div>
-        <span id="loader-text">Loading data...</span>
-      </div>
-      <div class="empty-state hidden" id="empty-state">
-        <div class="inner">
-          <h2>Data not yet <em>exported</em>.</h2>
-          <p>The live JS-rendered explorer needs the model data exported as JSON. This is a one-time setup.</p>
-          <div class="steps">
-            <ol>
-              <li><strong>Open your notebook</strong> with all variables loaded (run all cells)</li>
-              <li><strong>Run my export script</strong>: paste this in a new cell:<br>
-                <code>exec(open('export_to_json.py').read())</code></li>
-              <li><strong>Wait ~30 seconds</strong> for it to write the JSON files</li>
-              <li><strong>Upload</strong> the resulting <code>data_json/</code> folder to GitHub at <code>thesis/data_json/</code></li>
-              <li><strong>Refresh</strong> this page - the live explorer will work</li>
-            </ol>
-          </div>
-        </div>
+    <div class="layer-toggles">
+      <h4>Toggleable Layers</h4>
+      <label class="layer-toggle">
+        <input type="checkbox" data-layer="ql_Urban_50yr" checked>
+        <span class="swatch swatch-heat"></span>
+        <span class="name">Max Heat Extraction Rate (50yr)</span>
+      </label>
+      <label class="layer-toggle">
+        <input type="checkbox" data-layer="EnerUrb_50yr">
+        <span class="swatch swatch-power"></span>
+        <span class="name">Usable Power (50yr)</span>
+      </label>
+      <label class="layer-toggle">
+        <input type="checkbox" data-layer="ql_UrbanRenew_50yr">
+        <span class="swatch swatch-heat"></span>
+        <span class="name">Sustainable Heat Extraction Rate (50yr)</span>
+      </label>
+      <label class="layer-toggle">
+        <input type="checkbox" data-layer="EnerUrbRenew_50yr">
+        <span class="swatch swatch-power"></span>
+        <span class="name">Usable Power non-renewable</span>
+      </label>
+      <label class="layer-toggle">
+        <input type="checkbox" data-layer="ql_UrbanRenew_max_100yr">
+        <span class="swatch swatch-heat"></span>
+        <span class="name">Max Sustainable Heat Extraction Rate (100yr)</span>
+      </label>
+      <label class="layer-toggle">
+        <input type="checkbox" data-layer="EnerUrbRenew_100yr">
+        <span class="swatch swatch-power"></span>
+        <span class="name">Usable Power renewable (100yr)</span>
+      </label>
+    </div>
+
+    <div class="legend-mini">
+      <h5>Heat Extraction Rate (W/m)</h5>
+      <div class="bar" id="legend-bar-heat"></div>
+      <div class="vals"><span>2</span><span>14</span><span>27</span><span>41</span><span>55</span></div>
+    </div>
+    <div class="legend-mini">
+      <h5>Usable Power (W)</h5>
+      <div class="bar" id="legend-bar-power"></div>
+      <div class="vals"><span>100</span><span>1575</span><span>3050</span><span>4525</span><span>6000</span></div>
+    </div>
+
+    <div class="source-card">
+      <p><strong>Tip:</strong> Click anywhere to see values (interpolated from ~25 km native cells). W/m = per metre of borehole (H = 150 m); percentiles across the 8-GCM ensemble. Display: Web Mercator; data EPSG:4326.<br><br>
+      <strong>Source:</strong> <a href="https://github.com/vaibhavjgeo/master-thesis" target="_blank">GitHub repo</a> · <a href="files/Single_BHE_Analysis_GEE_CMIP6_Folium.ipynb" target="_blank">Notebook</a></p>
+    </div>
+  </aside>
+
+  <div class="fs-map-area">
+    <div class="map-title-overlay" id="map-title">Loading...</div>
+    <div id="map"></div>
+    <div class="loading-overlay" id="loader">
+      <div class="spinner"></div>
+      <span id="loader-text">Loading data...</span>
+    </div>
+    <div class="empty-state hidden" id="empty-state">
+      <div class="inner">
+        <h2>Map data is <em>loading</em>.</h2>
+        <p>The interactive layers are being fetched. If this message persists, please refresh in a moment.</p>
       </div>
     </div>
   </div>
-</section>
-
-<!-- ============ AI PROJECTS BANNER ============ -->
-<section class="ai-banner">
-  <div class="ai-banner-inner">
-
-    <div class="ai-banner-card geochat-card">
-      <div class="text">
-        <div class="eyebrow">→ AI Project · NEW</div>
-        <h3>Have a question? <em>Ask my thesis</em>.</h3>
-        <p>GeoChat is an AI assistant grounded in this thesis. Ask about methodology, scenarios, the numbers, or what they mean.</p>
-      </div>
-      <a href="https://vaibhavjgeo.vercel.app/geochat/" target="_blank" rel="noopener" class="btn-ai">
-        Try GeoChat
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
-      </a>
-    </div>
-
-    <div class="ai-banner-card bhe-card">
-      <div class="text">
-        <div class="eyebrow">→ AI Project · NEW</div>
-        <h3>Try the data. <em>BHE Recommender</em>.</h3>
-        <p>Click anywhere on Germany. Get a recommended borehole depth, expected output, full cost breakdown, and a downloadable PDF report.</p>
-      </div>
-      <a href="https://vaibhavjgeo.vercel.app/bhe/" target="_blank" rel="noopener" class="btn-ai">
-        Open BHE Recommender
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============ BEHIND THE SCENES ============ -->
-<section id="behind-the-scenes" class="behind-section">
-  <div class="section-header">
-    <div class="eyebrow">§ 05 - Behind the scenes</div>
-    <h2>How this <em>page</em> was built.</h2>
-    <p>The thesis itself was done in Python and Jupyter. This site that wraps it is a separate web-engineering project - so here's the short version of how it works under the hood.</p>
-  </div>
-
-  <div class="bts-grid">
-    <div class="bts-card">
-      <div class="bts-label">→ Data pipeline</div>
-      <h4>24 JSON files, 373 KB total</h4>
-      <p>The Python notebook exports per-pixel results to compact JSON (16 individual model files + 8 ensemble statistic files). No backend needed at runtime - the browser fetches only the JSON for the current selection.</p>
-      <small class="bts-tools">Python · NumPy · custom export script</small>
-    </div>
-    <div class="bts-card">
-      <div class="bts-label">→ Map rendering</div>
-      <h4>Live canvas + chroma-js</h4>
-      <p>JavaScript reads the JSON, renders each pixel to a small canvas via chroma-js color scales, then upscales to a larger image overlay with crisp-pixel rendering on Leaflet. Colormap switching is instant.</p>
-      <small class="bts-tools">JavaScript · Leaflet.js · chroma-js · Canvas API</small>
-    </div>
-    <div class="bts-card">
-      <div class="bts-label">→ Interactivity</div>
-      <h4>Click-to-query the array</h4>
-      <p>Clicking the map computes the corresponding pixel index from the data's geographic extent, reads the raw value, and shows the exact W/m or W in a popup. Layer toggles add and remove overlays without re-fetching.</p>
-      <small class="bts-tools">Leaflet events · Pixel index math</small>
-    </div>
-    <div class="bts-card">
-      <div class="bts-label">→ Hosting</div>
-      <h4>Vercel free tier</h4>
-      <p>Pure static site - no framework, no build step. Auto-deploys from GitHub on every push. The thesis page, fullscreen map, and embedded GeoChat widget all live in the same repo. Total cost: €0 / month.</p>
-      <small class="bts-tools">Vercel · GitHub Actions · auto-deploy</small>
-    </div>
-    <div class="bts-card">
-      <div class="bts-label">→ Development workflow</div>
-      <h4>AI-pair-programming throughout</h4>
-      <p>This site and the Python notebook behind it were built using AI-assisted development. <strong>Anthropic Claude</strong> was the primary pair-programmer for the web app (Leaflet rendering, JSON pipeline, chatbot integration). <strong>ChatGPT</strong> helped with the Python notebook (MATLAB-to-Python migration, scipy.optimize). I designed the architecture, reviewed every line, and own the system. AI accelerated the writing - the thinking stayed mine.</p>
-      <small class="bts-tools">Claude · ChatGPT · GitHub Copilot · manual review</small>
-    </div>
-  </div>
-
-  <div class="bts-links">
-    <a href="https://github.com/vaibhavjgeo/master-thesis" target="_blank" rel="noopener" class="btn btn-ghost">View source on GitHub</a>
-    <a href="files/Single_BHE_Analysis_GEE_CMIP6_Folium.ipynb" target="_blank" class="btn btn-ghost">Download the Python notebook</a>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="footer-inner">
-    <div>
-      <p class="footer-tagline">Let's <em>quantify</em> climate impact.</p>
-    </div>
-    <div>
-      <h4>Navigate</h4>
-      <ul>
-        <li><a href="https://vaibhavjgeo.vercel.app/">Home</a></li>
-          <li><a href="https://vaibhavjgeo-heatloop.vercel.app">HeatLoop</a></li>
-        <li><a href="https://vaibhavjgeo.vercel.app/geochat/">GeoChat</a></li>
-        <li><a href="https://vaibhavjgeo.vercel.app/bhe/">BHE Recommender</a></li>
-        <li><a href="https://vaibhavjgeo.vercel.app/thesis/">Master Thesis</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:vaibhavjaiswal1234@gmail.com">Email</a></li>
-        <li><a href="https://github.com/vaibhavjgeo" target="_blank" rel="noopener">GitHub</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div>Vaibhav Jaiswal · Karlsruhe, DE</div>
-    <div>© 2026 · Built with care · Vercel</div>
-  </div>
-</footer>
-
-<!-- ============ FLOATING CHAT FAB + PANEL ============ -->
-<button class="chat-fab" id="chat-fab" aria-label="Open chat assistant">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-</button>
-<div class="chat-panel" id="chat-panel" aria-hidden="true">
-  <div class="chat-panel-header">
-    <h4>GeoChat</h4>
-    <button class="chat-panel-close" id="chat-panel-close" aria-label="Close">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <iframe id="chat-iframe" src="" title="GeoChat - thesis-grounded AI assistant" loading="lazy"></iframe>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/chroma-js@2.4.2/chroma.min.js"></script>
 
 <script>
-// ============================================
-// CONFIG
-// ============================================
 const DATA_BASE = 'data_json';
-const META_URL = `${DATA_BASE}/meta.json`;
 
-// 9 colormaps for heat, 7 for power
 const COLORMAPS = {
-  // heat schemes
   viridis: ['#440154','#482878','#3e4a89','#31688e','#26828e','#1f9e89','#35b779','#6dcd59','#b4dd2c','#fde725'],
   plasma:  ['#0d0887','#41049d','#6a00a8','#8f0da4','#b12a90','#cb4679','#e16462','#f1834b','#fca636','#fcce25','#f0f921'],
   inferno: ['#000004','#1b0c41','#4a0c6b','#781c6d','#a52c60','#cf4446','#ed6925','#fb9a06','#f7d13d','#fcffa4'],
@@ -947,8 +367,8 @@ const COLORMAPS = {
   turbo:   ['#30123b','#4145ab','#4675ed','#39a2fc','#1bcfd4','#24eca6','#61fc6c','#a4fc3b','#d1e834','#f3c63a','#fe9b2d','#f36315','#d93806','#a91201','#7a0403'],
   ylgnbu:  ['#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58'],
   bugn:    ['#f7fcfd','#e5f5f9','#ccece6','#99d8c9','#66c2a4','#41ae76','#238b45','#006d2c','#00441b'],
+  cividis:['#00204d','#31446b','#575d6d','#707173','#8a8779','#c3b56c','#ffea46'],
   coolwarm:['#3b4cc0','#688aef','#99baff','#c9d8ef','#edd1c2','#f7a889','#e36a53','#b40426'],
-  // power schemes
   reds:    ['#fff5f0','#fee0d2','#fcbba1','#fc9272','#fb6a4a','#ef3b2c','#cb181d','#a50f15','#67000d'],
   oranges: ['#fff5eb','#fee6ce','#fdd0a2','#fdae6b','#fd8d3c','#f16913','#d94801','#a63603','#7f2704'],
   ylorrd:  ['#ffffcc','#ffeda0','#fed976','#feb24c','#fd8d3c','#fc4e2a','#e31a1c','#bd0026','#800026'],
@@ -958,37 +378,29 @@ const COLORMAPS = {
   copper:  ['#000000','#28150d','#502a1c','#783f2a','#a05538','#c86b46','#f08055','#ff9663']
 };
 
-// Fixed value ranges (matches notebook)
 const RANGES = {
-  heat:  { min: 2, max: 55 },     // W/m
-  power: { min: 100, max: 6000 }   // W
+  heat:  { min: 2, max: 55 },
+  power: { min: 100, max: 6000 }
 };
 
-// State
 let currentMode = 'individual';
-let currentData = null;            // loaded JSON for current selection
-let activeLayers = new Set(['ql_Urban_50yr']);  // initially just first heat layer
-let leafletLayers = {};            // { layerName: L.imageOverlay }
-let currentColormaps = {
-  heat:  'viridis',
-  power: 'reds'
-};
+let currentData = null;
+let activeLayers = new Set(['ql_Urban_50yr']);
+let leafletLayers = {};
+let currentColormaps = { heat: 'viridis', power: 'reds' };
 
-// ============================================
-// LEAFLET MAP INIT
-// ============================================
 const map = L.map('map', {
   center: [51.0, 10.4],
   zoom: 6,
   minZoom: 5, maxZoom: 12
 });
+L.control.scale({imperial:false}).addTo(map);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
   subdomains: 'abcd', maxZoom: 19
 }).addTo(map);
 
-// Germany boundary
 let germanyLayer = null;
 async function loadGermanyBoundary() {
   try {
@@ -1003,27 +415,17 @@ async function loadGermanyBoundary() {
         interactive: false
       }).addTo(map);
     }
-  } catch (e) {
-    console.warn('Germany boundary not loaded:', e);
-  }
+  } catch (e) { console.warn('Germany boundary not loaded:', e); }
 }
 
-// ============================================
-// CANVAS RENDERING (data array -> PNG image overlay)
-// ============================================
 function renderArrayToImageURL(arr2d, layerType) {
   const rows = arr2d.length;
   const cols = arr2d[0].length;
   const cmapName = currentColormaps[layerType];
   const colors = COLORMAPS[cmapName];
-  
-  // Always use fixed scale: 2-55 W/m for heat, 100-6000 W for power (matches notebook)
   const range = RANGES[layerType];
-  const domainMin = range.min;
-  const domainMax = range.max;
-  const scale = chroma.scale(colors).domain([domainMin, domainMax]);
+  const scale = chroma.scale(colors).domain([range.min, range.max]);
   
-  // Step 1: Render small native-resolution canvas
   const smallCanvas = document.createElement('canvas');
   smallCanvas.width = cols;
   smallCanvas.height = rows;
@@ -1034,31 +436,22 @@ function renderArrayToImageURL(arr2d, layerType) {
     for (let x = 0; x < cols; x++) {
       const v = arr2d[y][x];
       const idx = (y * cols + x) * 4;
-      // Strict NaN/null check - empty cells must be transparent
       if (v === null || v === undefined || Number.isNaN(v) || !Number.isFinite(v)) {
-        imgData.data[idx]     = 0;
-        imgData.data[idx + 1] = 0;
-        imgData.data[idx + 2] = 0;
-        imgData.data[idx + 3] = 0;  // fully transparent
+        imgData.data[idx] = 0; imgData.data[idx + 1] = 0; imgData.data[idx + 2] = 0; imgData.data[idx + 3] = 0;
       } else {
         const c = scale(v).rgb();
-        imgData.data[idx]     = c[0];
-        imgData.data[idx + 1] = c[1];
-        imgData.data[idx + 2] = c[2];
-        imgData.data[idx + 3] = 200;  // ~78% opacity
+        imgData.data[idx] = c[0]; imgData.data[idx + 1] = c[1]; imgData.data[idx + 2] = c[2]; imgData.data[idx + 3] = 200;
       }
     }
   }
   sCtx.putImageData(imgData, 0, 0);
   
-  // Step 2: Upscale 50x with NEAREST-NEIGHBOR (no blur) so the rendered
-  // image is high-res enough that browser tile rendering doesn't smooth it
   const SCALE = 50;
   const bigCanvas = document.createElement('canvas');
   bigCanvas.width = cols * SCALE;
   bigCanvas.height = rows * SCALE;
   const bCtx = bigCanvas.getContext('2d');
-  bCtx.imageSmoothingEnabled = false;        // CRITICAL: keep pixels crisp
+  bCtx.imageSmoothingEnabled = false;
   bCtx.mozImageSmoothingEnabled = false;
   bCtx.webkitImageSmoothingEnabled = false;
   bCtx.msImageSmoothingEnabled = false;
@@ -1071,9 +464,6 @@ function getLayerType(layerName) {
   return layerName.startsWith('ql_') ? 'heat' : 'power';
 }
 
-// ============================================
-// LOAD AND RENDER
-// ============================================
 function buildUrl() {
   if (currentMode === 'individual') {
     const model = document.getElementById('model-select').value;
@@ -1102,23 +492,15 @@ function buildTitle() {
 async function loadData() {
   const url = buildUrl();
   showLoader('Loading dataset...');
-  
   try {
     const r = await fetch(url);
-    if (!r.ok) {
-      hideLoader();
-      showEmpty();
-      return;
-    }
+    if (!r.ok) { hideLoader(); showEmpty(); return; }
     currentData = await r.json();
     hideEmpty();
     document.getElementById('map-title').textContent = buildTitle();
     redrawAllLayers();
-    
-    // Fit map to data extent on first load
     const e = currentData.extent;
     map.fitBounds([[e.ymin, e.xmin], [e.ymax, e.xmax]]);
-    
     hideLoader();
   } catch (e) {
     console.error(e);
@@ -1129,15 +511,10 @@ async function loadData() {
 
 function redrawAllLayers() {
   if (!currentData) return;
-  
-  // Remove existing leaflet image overlays
   Object.values(leafletLayers).forEach(layer => map.removeLayer(layer));
   leafletLayers = {};
-  
-  // Add active layers
   const e = currentData.extent;
   const bounds = [[e.ymin, e.xmin], [e.ymax, e.xmax]];
-  
   for (const layerName of activeLayers) {
     const arr = currentData.layers[layerName];
     if (!arr) continue;
@@ -1147,53 +524,31 @@ function redrawAllLayers() {
     overlay.addTo(map);
     leafletLayers[layerName] = overlay;
   }
-  
-  // Make sure Germany boundary is on top
   if (germanyLayer) germanyLayer.bringToFront();
 }
 
-// ============================================
-// COLOR LEGENDS & SWATCHES
-// ============================================
 function updateLegendsAndSwatches() {
   const heatColors = COLORMAPS[currentColormaps.heat];
   const powerColors = COLORMAPS[currentColormaps.power];
-  
-  document.getElementById('legend-bar-heat').style.background =
-    `linear-gradient(to right, ${heatColors.join(', ')})`;
-  document.getElementById('legend-bar-power').style.background =
-    `linear-gradient(to right, ${powerColors.join(', ')})`;
-  
-  // Always show fixed legend values (matches notebook)
-  const heatLegendVals = document.querySelector('.legend-mini:nth-of-type(1) .vals');
-  const powerLegendVals = document.querySelector('.legend-mini:nth-of-type(2) .vals');
-  if (heatLegendVals) heatLegendVals.innerHTML = '<span>2</span><span>14</span><span>27</span><span>41</span><span>55</span>';
-  if (powerLegendVals) powerLegendVals.innerHTML = '<span>100</span><span>1575</span><span>3050</span><span>4525</span><span>6000</span>';
-  
+  document.getElementById('legend-bar-heat').style.background = `linear-gradient(to right, ${heatColors.join(', ')})`;
+  document.getElementById('legend-bar-power').style.background = `linear-gradient(to right, ${powerColors.join(', ')})`;
   const heatMid = heatColors[Math.floor(heatColors.length / 2)];
   const powerMid = powerColors[Math.floor(powerColors.length / 2)];
   document.querySelectorAll('.swatch-heat').forEach(s => s.style.background = heatMid);
   document.querySelectorAll('.swatch-power').forEach(s => s.style.background = powerMid);
 }
 
-// ============================================
-// CLICK QUERY (show value at clicked point)
-// ============================================
 map.on('click', function(e) {
   if (!currentData || activeLayers.size === 0) return;
   const { lat, lng } = e.latlng;
   const ext = currentData.extent;
   const cols = currentData.shape.cols;
   const rows = currentData.shape.rows;
-  
-  // Geographic to pixel
   const pixelWidth = (ext.xmax - ext.xmin) / cols;
   const pixelHeight = (ext.ymax - ext.ymin) / rows;
   const x = Math.floor((lng - ext.xmin) / pixelWidth);
   const y = Math.floor((ext.ymax - lat) / pixelHeight);
-  
   if (x < 0 || y < 0 || x >= cols || y >= rows) return;
-  
   let html = `<div style="min-width:200px"><strong>${lat.toFixed(3)}°N, ${lng.toFixed(3)}°E</strong><br><br>`;
   let any = false;
   for (const layerName of activeLayers) {
@@ -1215,51 +570,33 @@ map.on('click', function(e) {
   }
   if (!any) html += '<em>No data at this point</em>';
   html += '</div>';
-  
   L.popup().setLatLng(e.latlng).setContent(html).openOn(map);
 });
 
-// ============================================
-// HELPERS
-// ============================================
 function showLoader(text) {
   document.getElementById('loader-text').textContent = text || 'Loading...';
   document.getElementById('loader').classList.add('active');
 }
-function hideLoader() {
-  document.getElementById('loader').classList.remove('active');
-}
-function showEmpty() {
-  document.getElementById('empty-state').classList.remove('hidden');
-}
-function hideEmpty() {
-  document.getElementById('empty-state').classList.add('hidden');
-}
+function hideLoader() { document.getElementById('loader').classList.remove('active'); }
+function showEmpty() { document.getElementById('empty-state').classList.remove('hidden'); }
+function hideEmpty() { document.getElementById('empty-state').classList.add('hidden'); }
 
-// ============================================
-// EVENT LISTENERS
-// ============================================
-// Mode tabs
 document.querySelectorAll('.mode-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     currentMode = tab.dataset.mode;
-    document.getElementById('individual-controls').style.display =
-      currentMode === 'individual' ? '' : 'none';
-    document.getElementById('ensemble-controls').style.display =
-      currentMode === 'ensemble' ? '' : 'none';
+    document.getElementById('individual-controls').style.display = currentMode === 'individual' ? '' : 'none';
+    document.getElementById('ensemble-controls').style.display = currentMode === 'ensemble' ? '' : 'none';
     loadData();
   });
 });
 
-// Selectors -> reload data
 ['model-select', 'scenario-individual', 'stat-select', 'scenario-ensemble'].forEach(id => {
   const el = document.getElementById(id);
   if (el) el.addEventListener('change', loadData);
 });
 
-// Colormap pickers -> redraw without re-fetching
 document.getElementById('cmap-heat').addEventListener('change', e => {
   currentColormaps.heat = e.target.value;
   updateLegendsAndSwatches();
@@ -1271,94 +608,23 @@ document.getElementById('cmap-power').addEventListener('change', e => {
   redrawAllLayers();
 });
 
-// Layer toggles
 document.querySelectorAll('.layer-toggle input[type="checkbox"]').forEach(cb => {
   cb.addEventListener('change', e => {
     const layerName = e.target.dataset.layer;
-    if (e.target.checked) {
-      activeLayers.add(layerName);
-    } else {
-      activeLayers.delete(layerName);
-    }
+    if (e.target.checked) activeLayers.add(layerName);
+    else activeLayers.delete(layerName);
     redrawAllLayers();
   });
 });
 
-// ============================================
-// INIT
-// ============================================
 updateLegendsAndSwatches();
 loadGermanyBoundary();
 loadData();
 </script>
 
-<!-- Cite this thesis: copy button handler -->
-<script>
-(function(){
-  document.querySelectorAll('.cite-copy').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const targetId = btn.dataset.target;
-      const el = document.getElementById(targetId);
-      if (!el) return;
-      try {
-        await navigator.clipboard.writeText(el.textContent);
-        const originalText = btn.textContent;
-        btn.textContent = 'Copied';
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.classList.remove('copied');
-        }, 1500);
-      } catch (err) {
-        console.warn('Copy failed:', err);
-      }
-    });
-  });
-})();
-</script>
 
+<!-- Vercel Web Analytics -->
 
-
-
-<!-- Chat FAB toggle -->
-<script>
-  (function() {
-    const fab = document.getElementById('chat-fab');
-    const panel = document.getElementById('chat-panel');
-    const closeBtn = document.getElementById('chat-panel-close');
-    const iframe = document.getElementById('chat-iframe');
-    const GEOCHAT_URL = '/geochat//?embed=1';
-    let isOpen = false;
-    let iframeLoaded = false;
-
-    function open() {
-      // Lazy-load iframe src on first open
-      if (!iframeLoaded) {
-        iframe.src = GEOCHAT_URL;
-        iframeLoaded = true;
-      }
-      panel.classList.add('open');
-      panel.setAttribute('aria-hidden', 'false');
-      fab.classList.add('hidden');
-      isOpen = true;
-    }
-
-    function close() {
-      panel.classList.remove('open');
-      panel.setAttribute('aria-hidden', 'true');
-      fab.classList.remove('hidden');
-      isOpen = false;
-    }
-
-    fab.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isOpen) close();
-    });
-  })();
-</script>
 
 <!-- Hamburger menu toggle -->
 <script>
