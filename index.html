@@ -211,7 +211,9 @@ section + section { border-top: 1px solid var(--line); }
 
 /* ============ BTS (Behind the scenes) ============ */
 .behind-section { background: var(--bg-alt); }
-.bts-grid { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.bts-grid { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+@media (max-width: 1050px) { .bts-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .bts-grid { grid-template-columns: 1fr; } }
 .bts-card { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 26px; transition: all 0.2s; }
 .bts-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .bts-card .bts-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px; font-weight: 600; }
@@ -542,7 +544,7 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
   <div class="cite-card">
   <div class="eyebrow">§ LIMITATIONS &amp; UNCERTAINTY</div>
   <h2 style="font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:clamp(24px,3vw,34px);margin:10px 0 16px;">What this model <em style="color:#2d6a4f;">cannot</em> tell you.</h2>
-  <div style="max-width:900px;font-size:15.5px;line-height:1.65;color:#2d3d33;">
+  <div style="font-size:15.5px;line-height:1.65;color:#2d3d33;">
     <p style="margin:8px 0;"><strong>Spatial support.</strong> The climate input (NEX-GDDP-CMIP6) is 0.25° (~25 km) native; the 5 km grid is a resampled analysis grid, not added information. Point values are interpolations of ~25 km cells.</p>
     <p style="margin:8px 0;"><strong>Uniform ground.</strong> A single thermal conductivity (λ = 2.5 W/(m·K)) and borehole resistance (R<sub>b</sub> = 0.15 (m·K)/W) are applied Germany-wide, so the spatial pattern reflects the climate signal, not lithology or hydrogeology. Real per-metre yields span roughly 20-100 W/m depending on ground type and groundwater (VDI 4640 Blatt 2).</p>
     <p style="margin:8px 0;"><strong>No groundwater advection.</strong> Flowing groundwater can raise usable extraction substantially; it is not modelled here.</p>
@@ -855,7 +857,7 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
     <div class="bts-card">
       <div class="bts-label">→ Data pipeline</div>
       <h4>24 JSON files, 373 KB total</h4>
-      <p>The Python notebook exports per-pixel results to compact JSON (16 individual model files + 8 ensemble statistic files). No backend needed at runtime - the browser fetches only the JSON for the current selection.</p>
+      <p>The Python notebook exports per-pixel results to compact JSON (16 individual model files + 8 ensemble statistic files). No backend needed at runtime - the browser fetches only the JSON for the current selection. Hosted on the Vercel free tier - €0/month, auto-deploys from GitHub.</p>
       <small class="bts-tools">Python · NumPy · custom export script</small>
     </div>
     <div class="bts-card">
@@ -869,12 +871,6 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
       <h4>Click-to-query the array</h4>
       <p>Clicking the map computes the corresponding pixel index from the data's geographic extent, reads the raw value, and shows the exact W/m or W in a popup. Layer toggles add and remove overlays without re-fetching.</p>
       <small class="bts-tools">Leaflet events · Pixel index math</small>
-    </div>
-    <div class="bts-card">
-      <div class="bts-label">→ Hosting</div>
-      <h4>Vercel free tier</h4>
-      <p>Pure static site - no framework, no build step. Auto-deploys from GitHub on every push. The thesis page, fullscreen map, and embedded GeoChat widget all live in the same repo. Total cost: €0 / month.</p>
-      <small class="bts-tools">Vercel · GitHub Actions · auto-deploy</small>
     </div>
     <div class="bts-card">
       <div class="bts-label">→ Development workflow</div>
