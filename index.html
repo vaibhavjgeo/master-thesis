@@ -23,7 +23,7 @@
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Climate-projected geothermal potential map of Germany with 5 km resolution heat extraction data" />
+<meta property="og:image:alt" content="Climate-projected geothermal potential map of Germany with 5 km analysis-grid heat extraction (resampled from ~25 km CMIP6) data" />
 <meta property="article:author" content="Vaibhav Jaiswal" />
 <meta property="article:section" content="Research" />
 
@@ -32,7 +32,7 @@
 <meta name="twitter:title" content="Master Thesis - Climate change & geothermal in Germany" />
 <meta name="twitter:description" content="Live interactive maps of climate-projected geothermal potential in Germany. M.Sc. thesis at KIT." />
 <meta name="twitter:image" content="/thesis//og-thesis.png" />
-<meta name="twitter:image:alt" content="Climate-projected geothermal potential map of Germany with 5 km resolution heat extraction data" />
+<meta name="twitter:image:alt" content="Climate-projected geothermal potential map of Germany with 5 km analysis-grid heat extraction (resampled from ~25 km CMIP6) data" />
 
 <link rel="canonical" href="/thesis//" />
 
@@ -355,7 +355,7 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
 <!-- ============ THESIS HERO ============ -->
 <section class="thesis-hero">
   <div>
-    <div class="eyebrow">M.Sc. Thesis · KIT · 2026</div>
+    <div class="eyebrow">M.Sc. Thesis · KIT · 2025</div>
     <h1>Climate change & the future of <em>shallow geothermal</em> energy in Germany.</h1>
     <p class="lead">A semi-analytical model coupling CMIP6 climate projections with borehole heat exchanger physics, quantifying how a warming subsurface reshapes Germany's renewable heating potential through 2100.</p>
     <div class="hero-cta">
@@ -507,6 +507,7 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
       <!-- Temperature labels (right side) -->
       <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#1f4a37">
         <text x="330" y="245">+0.8°C</text>
+        <text x="330" y="228" font-size="7" fill="#6b7a72">SSP 2-4.5 MEAN, ILLUSTRATIVE</text>
         <text x="330" y="325" fill="#7a5a3a">+1.7°C</text>
         <text x="330" y="405" fill="#9a3f15">+2.5°C</text>
       </g>
@@ -537,6 +538,20 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
 </section>
 
 <!-- ============ CITE THIS THESIS ============ -->
+<section id="limitations" data-orig-id="cite" class="cite-section">
+  <div class="eyebrow">§ LIMITATIONS &amp; UNCERTAINTY</div>
+  <h2 style="font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:clamp(24px,3vw,34px);margin:10px 0 16px;">What this model <em style="color:#2d6a4f;">cannot</em> tell you.</h2>
+  <div style="max-width:900px;font-size:15.5px;line-height:1.65;color:#2d3d33;">
+    <p style="margin:8px 0;"><strong>Spatial support.</strong> The climate input (NEX-GDDP-CMIP6) is 0.25° (~25 km) native; the 5 km grid is a resampled analysis grid, not added information. Point values are interpolations of ~25 km cells.</p>
+    <p style="margin:8px 0;"><strong>Uniform ground.</strong> A single thermal conductivity (λ = 2.5 W/(m·K)) and borehole resistance (R<sub>b</sub> = 0.15 (m·K)/W) are applied Germany-wide, so the spatial pattern reflects the climate signal, not lithology or hydrogeology. Real per-metre yields span roughly 20-100 W/m depending on ground type and groundwater (VDI 4640 Blatt 2).</p>
+    <p style="margin:8px 0;"><strong>No groundwater advection.</strong> Flowing groundwater can raise usable extraction substantially; it is not modelled here.</p>
+    <p style="margin:8px 0;"><strong>Air-to-ground coupling.</strong> The driver is near-surface air temperature (tas); ground-surface temperature differs by a land-cover-dependent offset (order 1-2 K in central Europe), adding uncertainty to absolute values.</p>
+    <p style="margin:8px 0;"><strong>Ensemble spread ≠ full uncertainty.</strong> P25/P50/P75 across 8 GCMs capture climate-model spread only - not parameter or structural uncertainty.</p>
+    <p style="margin:8px 0;"><strong>Continuous load.</strong> Extraction is assumed constant over the horizon; real heating is seasonal, and the German design constraint of reference is VDI 4640 alongside the Swiss SIA 384/6 limit (T<sub>min</sub> ≥ -1.5 °C) used here.</p>
+    <p style="margin:8px 0;color:#6b7a72;font-size:13.5px;">Bottom line: read the maps as climate-driven <em>relative</em> change and first-pass magnitude (~27-47 W/m ensemble means), not as site predictions. Note also the demand side: the same warming that raises geothermal yield reduces heating demand, so the net societal benefit is smaller than the yield gain alone.</p>
+  </div>
+</section>
+
 <section id="cite" class="cite-section">
   <div class="cite-card">
     <div class="cite-label">→ Cite this work</div>
@@ -544,18 +559,19 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
     <div class="cite-formats">
       <div class="cite-format">
         <div class="cite-format-label">APA</div>
-        <pre class="cite-text" id="cite-apa">Jaiswal, V. (2026). Impact of Climate Change on the Geothermal Potential of Closed Systems Using GIS and Python (Master's thesis). Karlsruhe Institute of Technology (KIT).</pre>
+        <pre class="cite-text" id="cite-apa">Jaiswal, V. (2025). Impact of Climate Change on the Geothermal Potential of Closed Systems Using GIS and Python (Master's thesis). Karlsruhe Institute of Technology (KIT). https://doi.org/10.5281/zenodo.20540260</pre>
         <button class="cite-copy" data-target="cite-apa">Copy</button>
       </div>
       <div class="cite-format">
         <div class="cite-format-label">BibTeX</div>
-        <pre class="cite-text" id="cite-bibtex">@mastersthesis{jaiswal2026geothermal,
+        <pre class="cite-text" id="cite-bibtex">@mastersthesis{jaiswal2025geothermal,
   title  = {Impact of Climate Change on the Geothermal Potential of Closed Systems Using GIS and Python},
   author = {Jaiswal, Vaibhav},
-  year   = {2026},
+  year   = {2025},
+  doi    = {10.5281/zenodo.20540260},
   school = {Karlsruhe Institute of Technology (KIT)},
   type   = {M.Sc. Thesis},
-  url    = {/thesis/}
+  url    = {https://doi.org/10.5281/zenodo.20540260},
 }</pre>
         <button class="cite-copy" data-target="cite-bibtex">Copy</button>
       </div>
@@ -607,13 +623,13 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
     <div class="method-step">
       <div class="step-num">-> 01 / DATA</div>
       <h4>CMIP6 acquisition</h4>
-      <p>8 GCMs from Google Earth Engine under SSP 2-4.5 & SSP 5-8.5; reprojected to EPSG:4326.</p>
+      <p>8 CMIP6 GCMs (BCC-CSM2-MR, CanESM5, GFDL-ESM4, GISS-E2-1-G, HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2-HR) from NASA NEX-GDDP-CMIP6 in Google Earth Engine under SSP 2-4.5 &amp; SSP 5-8.5. Native resolution 0.25° (~25 km), resampled to a 5 km EPSG:4326 analysis grid; surface driver is near-surface air temperature (tas) with an air-to-ground coupling. Data: NASA NEX-GDDP-CMIP6 (Thrasher et al., 2022, <em>Scientific Data</em>); we acknowledge the CMIP6 modelling groups.</p>
       <small class="tools">Python · Google Earth Engine · rasterio</small>
     </div>
     <div class="method-step">
       <div class="step-num">-> 02 / MODEL</div>
       <h4>FLS heat transport</h4>
-      <p>Finite Line Source theory (Rivera 2017) with superposed surface boundary heating.</p>
+      <p>Finite-line-source model with a Cauchy-type upper boundary (Rivera, Blum &amp; Bayer, 2016, <em>Energy</em> 98) and groundwater-advection MFLS lineage (Molina-Giraldo et al., 2011). The ~4 m of borehole length saved per +1 °C is the urban central-Europe rule of Rivera et al. (2017, <em>Renewable Energy</em> 103).</p>
       <small class="tools">NumPy · SciPy · FLS theory</small>
     </div>
     <div class="method-step">
@@ -658,14 +674,14 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
         <div class="control-group">
           <label for="model-select">Climate Model (GCM)</label>
           <select id="model-select">
-            <option value="BBC">BBC</option>
-            <option value="CanESM" selected>CanESM</option>
-            <option value="GFDL">GFDL</option>
-            <option value="GISS">GISS</option>
-            <option value="HadGEM">HadGEM</option>
-            <option value="IPSL">IPSL</option>
-            <option value="MIROC">MIROC</option>
-            <option value="MPI">MPI</option>
+            <option value="BBC">BCC-CSM2-MR</option>
+            <option value="CanESM" selected>CanESM5</option>
+            <option value="GFDL">GFDL-ESM4</option>
+            <option value="GISS">GISS-E2-1-G</option>
+            <option value="HadGEM">HadGEM3-GC31-LL</option>
+            <option value="IPSL">IPSL-CM6A-LR</option>
+            <option value="MIROC">MIROC6</option>
+            <option value="MPI">MPI-ESM1-2-HR</option>
           </select>
         </div>
 
@@ -702,6 +718,7 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
         <label for="cmap-heat">Heat Extraction Colormap</label>
         <select id="cmap-heat">
           <option value="viridis" selected>Viridis (default)</option>
+          <option value="cividis">Cividis (colorblind-safe)</option>
           <option value="plasma">Plasma</option>
           <option value="inferno">Inferno</option>
           <option value="magma">Magma</option>
@@ -709,7 +726,6 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
           <option value="turbo">Turbo</option>
           <option value="ylgnbu">YlGnBu</option>
           <option value="bugn">BuGn</option>
-          <option value="coolwarm">Coolwarm</option>
         </select>
       </div>
 
@@ -772,7 +788,7 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
       </div>
 
       <div class="source-card">
-        <p><strong>Tip:</strong> Click anywhere on the map to see the exact value at that point.<br><br>
+        <p><strong>Tip:</strong> Click anywhere on the map to see the value at that point (interpolated from the ~25 km native climate cell).<br><br><strong>Units:</strong> W/m = watts per metre of borehole (H = 150 m); usable power = rate × length. <strong>Percentiles</strong> (P25/P50/P75) are taken across the 8-GCM ensemble. <strong>Projection:</strong> display Web Mercator; data grid EPSG:4326.<br><br>
         <strong>Source:</strong> <a href="https://github.com/vaibhavjgeo/master-thesis" target="_blank">GitHub repo</a> · <a href="files/Single_BHE_Analysis_GEE_CMIP6_Folium.ipynb" target="_blank">Notebook</a></p>
       </div>
     </aside>
@@ -786,18 +802,8 @@ footer { padding: 80px 0 36px; background: var(--ink); color: var(--bg); border-
       </div>
       <div class="empty-state hidden" id="empty-state">
         <div class="inner">
-          <h2>Data not yet <em>exported</em>.</h2>
-          <p>The live JS-rendered explorer needs the model data exported as JSON. This is a one-time setup.</p>
-          <div class="steps">
-            <ol>
-              <li><strong>Open your notebook</strong> with all variables loaded (run all cells)</li>
-              <li><strong>Run my export script</strong>: paste this in a new cell:<br>
-                <code>exec(open('export_to_json.py').read())</code></li>
-              <li><strong>Wait ~30 seconds</strong> for it to write the JSON files</li>
-              <li><strong>Upload</strong> the resulting <code>data_json/</code> folder to GitHub at <code>thesis/data_json/</code></li>
-              <li><strong>Refresh</strong> this page - the live explorer will work</li>
-            </ol>
-          </div>
+          <h2>Map data is <em>loading</em>.</h2>
+          <p>The interactive layers are being fetched. If this message persists, the data service is temporarily unavailable - please refresh in a moment or view the methodology below.</p>
         </div>
       </div>
     </div>
@@ -947,6 +953,7 @@ const COLORMAPS = {
   turbo:   ['#30123b','#4145ab','#4675ed','#39a2fc','#1bcfd4','#24eca6','#61fc6c','#a4fc3b','#d1e834','#f3c63a','#fe9b2d','#f36315','#d93806','#a91201','#7a0403'],
   ylgnbu:  ['#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58'],
   bugn:    ['#f7fcfd','#e5f5f9','#ccece6','#99d8c9','#66c2a4','#41ae76','#238b45','#006d2c','#00441b'],
+  cividis:['#00204d','#31446b','#575d6d','#707173','#8a8779','#c3b56c','#ffea46'],
   coolwarm:['#3b4cc0','#688aef','#99baff','#c9d8ef','#edd1c2','#f7a889','#e36a53','#b40426'],
   // power schemes
   reds:    ['#fff5f0','#fee0d2','#fcbba1','#fc9272','#fb6a4a','#ef3b2c','#cb181d','#a50f15','#67000d'],
@@ -982,6 +989,7 @@ const map = L.map('map', {
   zoom: 6,
   minZoom: 5, maxZoom: 12
 });
+L.control.scale({imperial:false}).addTo(map);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
